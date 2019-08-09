@@ -139,7 +139,7 @@ body {
     
     #svgHolder {
         padding-top: 80px;
-        zoom: 1.5;
+        zoom: 1.0;
     }
     
     #svg0 {
@@ -147,7 +147,7 @@ body {
     }
     
     .rdiv {
-        font-size: 25px;
+        font-size: 20px;
     }
     
     #RAT:before {
