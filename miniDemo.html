@@ -1,0 +1,996 @@
+<!doctype html>
+<html lang="en">
+<head><title>roofie mater</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--link id="luckiestFont" href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet"-->
+<link id="demoStyles" rel="stylesheet" type="text/css" href="demoStyles.css">
+
+<style id="roofieStyle">
+
+
+path, rect, g, ellipse {
+    fill: hsl(var(--color), var(--lightness));
+    stroke: hsl(var(--color), calc(.7 * var(--lightness)));
+    stroke-width: 5px;
+    vector-effect: non-scaling-stroke;
+    transition: stroke-width 1s linear;
+}
+
+.rat {
+    --smallD: '';
+    --curD: var(--smallD);
+    d: path(var(--curD));
+    animation-name: none;
+    animation-duration: var(--anispeed);
+    animation-timing-function: linear;
+}
+
+.roofbot {
+    --lightness: var(--darkness);
+}
+
+.rooftop {
+    --lightness: var(--midness);
+}
+
+.shade {
+    --lightness: 0%;
+    opacity: var(--shade-opacity);
+}
+
+.accent {
+    --lightness: var(--midness);
+    stroke-width: 3;
+}
+
+#roofGroupBot {
+    transform-origin: 300px 150px;
+}
+
+#facadeRoofBot {
+    --smallD: 'M300 50 Q250 40 210 8 Q200 51 175 90 L290 105 Z';
+}
+
+#sideRoofBot {
+    --smallD: 'M300 50 Q340 50 380 20 Q390 85 414 130 L310 135 Z';
+    --largeD: 'M300 50 Q340 50 414 20 Q415 85 424 132 L310 135 Z';
+    --curD: var(--largeD);
+    animation-timing-function: linear;
+}
+
+#leftSide {
+    transform-origin: 220px 207px;
+    transform: scale(1.0, 1.0);
+    animation-duration: calc(var(--anispeed) * (3/7));
+    animation-delay: calc(var(--anispeed) * 0.2);
+}
+
+#leftSideWall {
+    --smallD: 'M225 207 l-10 -50 q-15 0 -30 10 q10 20 12 43 Z';
+}
+
+#leftSideRoof {
+    --smallD: 'M210 167 l-30 5 q8 -12 10 -30 l30 -12 Z';
+}
+
+#leftSide.one { animation-name: LS1; }
+#leftSide.two { animation-name: LS2; }
+#leftSide.tre { animation-name: LS3; }
+
+@keyframes LS1 {
+    0% {
+        animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 2.55);
+    } 20% {
+        transform: scale(1.3, 1.0);
+    } 100% {
+        transform: translate(0px, 0px) scale(0.001, 1.0);
+    }
+}
+@keyframes LS2 {
+    0% {
+        animation-timing-function: ease-out;
+    } 20% {
+        transform: scale(1.6, 1.0);
+        animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 2.55);
+    } 100% {
+        transform: translate(0px, 0px) scale(1.2, 1.0);
+    }
+}
+@keyframes LS3 {
+    0% {
+        animation-timing-function: ease-in-out;
+    } 20% {
+        transform: scale(1.6, 1.0);
+        animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 2.55);
+    } 100% {
+        transform: translate(0px, 0px) scale(1.0, 1.0);
+    }
+}
+
+#facadeRearWall {
+    --smallD: 'M320 74 Q308 65 300 55 L290 80 L302 205 L320 205 Z';
+}
+
+#facadeFrontWall {
+    --smallD: 'M214 208 Q200 140 195 82 Q210 60 220 25 Q230 50 250 70 Q250 100 265 205 Z M250 70 Q275 70 320 75 Q321 130 325 205 L265 205 Q250 100 250 70 Z';
+}
+
+#rightSideWall {
+    
+    --smallD: 'M300 205 Q300 190 290 120 Q310 112 340 110 Q342 160 345 205 Z M345 205 Q342 160 340 110 Q350 70 370 35 Q377 80 390 120 Q383 152 380 208 Z';
+    
+    --smallBowD: 'M300 205 Q290 170 290 120 Q310 112 340 110 Q342 160 345 205 Z M345 205 Q342 160 340 110 Q350 70 370 35 Q377 80 390 120 Q393 155 380 208 Z';
+    
+    --b-largeD: 'M 300 205 Q 300 190 290 120 Q 317.156 110.569 362.901 110 Q 365.616 160 366.469 206.431 Z M 366.469 206.431 Q 365.616 160 362.901 110 Q 371.469 62.8435 395.048 29.9905 Q 393.46 80 405.744 123.578 Q 399.313 160.735 395.744 208.716 Z';
+    
+    --largeD: 'M300 205 Q300 190 290 120 Q320 110 372 110 Q375 160 375 207 Z M375 207 Q375 160 372 110 Q380 60 405 28 Q400 80 412 125 Q405 165 402 209 Z';
+    
+    --largeBowD: 'M300 205 Q290 160 290 120 Q320 110 372 110 Q375 160 375 207 Z M375 207 Q375 160 372 110 Q380 60 405 28 Q400 80 412 125 Q415 168 402 209 Z';
+    
+    --ex-largeD: 'M 300 205 Q 300 190 290 120 Q 321.072 109.786 375.431 110 Q 378.538 160 378.216 207.214 Z M 378.216 207.214 Q 378.538 160 375.431 110 Q 383.216 58.9279 408.752 27.2495 Q 402.466 80 414.359 125.536 Q 407.144 166.608 404.359 209.107 Z';
+    
+    --curD: var(--largeD);
+    --curBowD: var(--largeBowD);
+    
+    --mag: 8.0;
+    
+    transform-origin: 310px 206px;
+    animation-duration: var(--anispeed);
+    animation-delay: 0ms;
+}
+
+#roofGroupTop {
+    xxopacity: 0.5;
+    transform-origin: 300px 150px;
+}
+
+#sideRoofTop {
+    --smallD: 'M300 50 Q300 80 280 130 Q315 120 350 120 Q365 100 380 20 Q 340 50 300 50 Z';
+    --largeD: 'M300 50 Q300 80 280 130 Q325 120 375 120 Q400 80 414 20 Q 340 50 300 50Z';
+    --curD: var(--largeD);
+    animation-timing-function: linear;
+}
+
+#rightSideWall.getSmall {
+    --aniD: var(--smallD);
+    --aniBowD: var(--smallBowD);
+    animation-name: rightSideWallAni;
+    animation-timing-function: cubic-bezier(0.3, -1.6, 0.6, 1.6);
+}
+#rightSideWall.getLarge {
+    --aniD: var(--largeD);
+    --aniBowD: var(--largeBowD);
+    animation-name: rightSideWallAni;
+    animation-timing-function: cubic-bezier(0.3, -0.6, 0.6, 1.6);
+}
+
+@keyframes rightSideWallAni {
+    0% {}
+    42%, 60% {
+        d: path(var(--aniD));
+        transform: scale(1, 1);
+        xxanimation-timing-function: cubic-bezier(0.3, 1.0, 0.6, 2.0);
+        animation-timing-function: linear;
+    }
+    65% {
+        d: path(var(--aniBowD));
+        transform: scale(1.1, 0.85);
+        animation-timing-function: cubic-bezier(0.3, 1.2, 0.6, 1.6);
+    }
+    90%, /* {
+        transform: scale(1.0, 1.0);
+        d: path(var(--aniD));
+        animation-timing-function: cubic-bezier(0.3, 1.5, 0.6, 1.4);
+    }
+    86% {
+        transform: scale(1.03, 0.95);
+        d: path(var(--aniBowD));
+        animation-timing-function: cubic-bezier(0.3, 1.5, 0.6, 1.4);
+    }*/
+    100% {
+        transform: scale(1.0, 1.0);
+        d: path(var(--aniD));
+    }
+}
+
+
+.getSmall {
+    animation-duration: calc(var(--anispeed) * (1/10));
+    animation-delay: calc(0.30 * var(--anispeed));
+    animation-name: gsa;
+}
+
+.getLarge {
+    animation-duration: calc(var(--anispeed) * (1/10));
+    animation-delay: calc(0.30 * var(--anispeed));
+    animation-name: gla;
+}
+
+@keyframes gsa {
+    100% {
+        d: path(var(--smallD));
+    }
+}
+
+@keyframes gla {
+    100% {
+        d: path(var(--largeD));
+    }
+}
+
+#tinyRoofShade {
+    --smallD: 'M 308 92 L290.5 102 Q300 75 300 50 Z';
+}
+
+#facadeRoofTop {
+    --smallD: 'M300 50 Q250 40 210 8 Q215 45 240 80 L308 90 Q303 75 300 50 Z';
+}
+
+@keyframes roofAni {
+    0%{} 100%{
+        transform: scale(1, 1) rotate(0deg) translateY(0px);
+    } 10% {
+        transform: scale(1, 1.2) rotate(5deg) translateY(calc(-1px * var(--height)));
+    } 40% {
+        transform: scale(1, 1.1) rotate(1deg) translateY(calc((-2px * var(--height)) - 10px));
+    } 50% {
+        transform: scale(1, 1.05) rotate(-1deg) translateY(calc((-2px * var(--height)) - 20px));
+    } 60% {
+        transform: scale(1, 1) rotate(-3deg) translateY(0px);
+    } 82% {
+        transform: scale(1, 1.05) rotate(3deg) translateY(-10px);
+    }
+}
+
+.roofBalls {
+    animation: roofAni var(--anispeed) linear;
+    --height: 50;
+}
+
+#ground {
+    --lightness: calc(.7 * var(--darkness));
+    stroke: none;
+    --smallD: 'M0 243 Q 260 173 520 223 h 60 v100 H 0 Z';
+}
+
+#facadeWindow {
+    --smallD: "M 211 83 a 9 20 0 1 0 18 0 a 9 20 0 1 0 -18 0 Z";
+    transform: rotate(-4deg);
+    transform-origin: 220px 83px;
+}
+
+.winSpin {
+    --turns: -0;
+    animation-name: spinner;
+    animation-duration: calc(var(--anispeed) * 0.3);
+    animation-delay: calc(var(--anispeed) * 0.61);
+}
+
+#door {
+    --smallD: 'M226 203 q -7 -33 -11 -63 q 10 -4 22 -4.5 q 3 25 10 65.7 Z';
+    transform-origin: 230px 268px;
+}
+
+#doorStep {
+    --smallD: 'M220 207 l-1.5 -4 l25 -3 l8 0.5 l1 5 Z';
+    --lightness: var(--darkness);
+    stroke-width: 2px;
+}
+
+#rightWindowGroupHolder {
+    transform-origin: 318px 160px;
+    animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.6);
+    xxanimation-duration: calc(var(--anispeed) * (3/7));
+    animation-duration: var(--anispeed);
+}
+
+.fullspin0 { --turns: 1; animation-name: spinner; }
+.fullspin1 { --turns: 0; animation-name: spinner; }
+.fullspin2 { --turns: -1; animation-name: spinner; }
+
+@keyframes spinner {
+    0%, 10% {}
+    42%, 100% { transform: rotate(calc(1turn * var(--turns)));
+        
+    }
+}
+
+#rightWindowGroup {
+    transform-origin: 318px 160px;
+    animation-timing-function: linear;
+}
+
+#rightWindowGroupHolder.one { animation-name: windowGroupAni1; }
+#rightWindowGroupHolder.two { animation-name: windowGroupAni2; }
+#rightWindowGroupHolder.tre { animation-name: windowGroupAni3; }
+
+@keyframes windowGroupAni1 {
+    0%, 10% {}
+    42%, 100% {
+        transform: translate(-1px, 0px) scale(0.8, 1) rotate(1.5deg);
+    }
+}
+@keyframes windowGroupAni2 {
+    0%, 10% {}
+    42%, 100% {
+        transform: translate(13px, 0px) scale(1.1, 1) rotate(1deg);
+    }
+}
+@keyframes windowGroupAni3 {
+    0%, 10% {}
+    42%, 100% {
+        transform: translate(0px, 0px) scale(1.05, 1) rotate(2deg);
+    }
+}
+
+#rightWindowFrame {
+    
+    --smallD: 'M320 184 L 310 185 q -2 -20 -7 -45 q 3 -3.5 11.1 -5\
+    q 0 0 0 0\
+               M320 184 L 332 183 q -4 -23 -4.1 -46.8 q -3.9 -2.5 -13.8 -1.2\
+    q 0 0 0 0 ';
+    
+    --largeD: 'M317 184 L 300 185 q -2 -20 -6 -45 q 8 -7 19 -3\
+    Q 317 164 317 185.5\
+               M325 184 L 343 183 q 1 -23 -2 -49 q -10 -5 -20 2\
+    Q 325 164 325 185.45';
+    
+    --bifurcatedD: 'M320 184 L 310 185 q -3 -24 -15 -38 q 3 -7 11.1 -10\
+    Q 320 164 320 184\
+               M320 184 L 332 183 q -2 -23 7 -42 q -4 -5 -13.8 -5.5\
+    Q 320 164 320 184';
+    
+    --splitlineD: 'M320 184 L 310 185 q -2 -20 -7 -45 q 3 -3.5 11.1 -5\
+    q 0 0 5.9 50\
+               M320 184 L 332 183 q-4 -23 -4.1 -46.8 q -3.9 -2.5 -13.8 -1.2\
+    q 0 0 5.9 50';
+    
+    --curD: var(--largeD);
+    transform-origin: 318px 160px;
+    animation-delay: calc(var(--anispeed) * 0.13);
+    animation-duration: calc(var(--anispeed) * (250/700));
+}
+
+#rightWindowFrame.one { animation-name: window0merge; }
+#rightWindowFrame.two { animation-name: window0split; }
+#rightWindowFrame.tre { animation-name: window0kiss; }
+
+@keyframes window0split {
+    10% {} 50% {
+        d: path(var(--splitlineD));
+        transform: scale(0.8, 1);
+    } 80% {
+        d: path(var(--bifurcatedD));
+        transform: scale(1.2, 1);
+    } 100% {
+        d: path(var(--largeD));
+        transform: scale(1.1, 1);
+    }
+}
+@keyframes window0merge {
+    20%{} 50% {
+        d: path(var(--bifurcatedD));
+    } 90% {
+        d: path(var(--splitlineD));
+    } 100% {
+        d: path(var(--smallD));
+    }
+}
+@keyframes window0kiss {
+    20%{} 50% {
+        d: path(var(--bifurcatedD));
+    } 100% {
+        d: path(var(--splitlineD));
+    }
+}
+
+#leftWindowSill {
+    --lightness: var(--darkness);
+    stroke-width: 2px;
+    --smallD: 'M308 190 l-1 -7 l19 -2 l8 0.5 l1 7 Z';
+    --splitD: 'M308 190 l-1 -7 l19 -2 l8 0.5 l0.2 7 Z';
+    --curD: var(--splitD);
+    --ctrans: translate(-12px, 0px) scale(0.8, 1.0);
+    transform: translate(-12px, 0px) scale(0.8, 1.0);
+    transform-origin: 317px 190px;
+    animation-delay: calc(var(--anispeed) * 0.13);
+    animation-duration: calc(var(--anispeed) * (250/700));
+}
+
+#rightWindowSill {
+    --lightness: var(--darkness);
+    stroke-width: 2px;
+    --smallD: 'M308 190 l-1 -7 l19 -2 l8 0.5 l1 7 Z';
+    --splitD: 'M308 190 l-0.4 -7 l21 -2 l7 0.5 l0 7 Z';
+    --curD: var(--splitD);
+    --ctrans: translate(13px, -1.5px) scale(0.8, 1.0);
+    transform: translate(13px, -1.5px) scale(0.8, 1.0);
+    transform-origin: 317px 190px;
+    animation-delay: calc(var(--anispeed) * 0.13);
+    animation-duration: calc(var(--anispeed) * (250/700));
+}
+
+#leftWindowSill.one { animation-name: sillCenter; }
+#leftWindowSill.two { animation-name: sillSplit; }
+#rightWindowSill.one { animation-name: sillCenter; }
+#rightWindowSill.two { animation-name: sillSplit; }
+
+@keyframes sillCenter {
+    20% {
+        d: path(var(--smallD));
+    } 100% {
+        d: path(var(--smallD));
+        transform: translate(0px, 0px);
+    }
+}
+@keyframes sillSplit {
+    20% {} 50% {
+        transform: translate(0px, 0px);
+        d: path(var(--smallD));
+    } 100% {
+        d: path(var(--splitD));
+        transform: var(--ctrans);
+    }
+}
+
+#facadeShade {
+    stroke-width: 0;
+    --smallD: 'M 180 0 H 340 V 135 L 325 135 l-30 -30 l-43 -5 l-10 10 l-25 -40 l-30 50 Z';
+    animation-duration: var(--anispeed);
+    animation-timing-function: linear;
+}
+
+#facadeShade.go { animation-name: facShadeAni; }
+
+@keyframes facShadeAni {
+    0%, 60%, 100% {
+        d: path(var(--smallD));
+        opacity: var(--shade-opacity);
+    } 18%, 50% {
+        d: path('M 180 0 H 340 V 135 L 325 135 l-30 -60 l-43 -5 l-10 10 l-25 -40 l-19 40Z');
+        opacity: 0.0;
+    } 82% {
+        d: path('M 180 0 H 340 V 135 L 325 135 l-30 -48 l-43 0 l-10 10 l-25 -40 l-30 50Z');
+        opacity: calc(0.8 * var(--shade-opacity));
+    }
+}
+
+#rightSideShade {
+    stroke-width: 0;
+    --height: 80;
+    --smallD: 'M350 40 Q370 115 400 190 L 480 0 H 350 Z M340 123 V 80 H 310 L 276 133 L 294 155 L 312 148 Z ';
+    --midD: 'M350 40 Q370 115 400 190 L 480 0 H 350 Z M340 123 V 80 H 310 L 276 133 L 204 155 L 312 148 Z ';
+    --largeD: 'M380 45 Q 390 120 412 170 L 480 0 H 380 Z M374 118 V 80 H 310 L 276 133 L 294 165 L 344 143 Z ';
+    --curD: var(--largeD);
+    animation-duration: var(--anispeed);
+    animation-timing-function: linear;
+}
+
+#rightSideShade.small { animation-name: RShade_getSmall; }
+#rightSideShade.large { animation-name: RShade_getLarge; }
+
+@keyframes RShade_getSmall {
+    60%, 100% {
+        transform: translate(0px, 0px);
+        d: path(var(--smallD));
+        opacity: var(--shade-opacity);
+    } 10%, 50% {
+        d: path(var(--midD));
+        transform: translate(0px, -80px);
+        xxtransform: translate(0px, calc(-1px * var(--height)));
+        opacity: 0.0;
+    } 82% {
+        transform: translate(0px, -15px);
+        opacity: calc(0.8 * var(--shade-opacity));
+    }
+}
+
+@keyframes RShade_getLarge {
+    60%, 100% {
+        transform: translate(0px, 0px);
+        d: path(var(--largeD));
+        opacity: var(--shade-opacity);
+    } 18%, 50% {
+        transform: translate(0px, -80px);
+        opacity: 0.0;
+    } 82% {
+        transform: translate(0px, -15px);
+        opacity: calc(0.8 * var(--shade-opacity));
+    }
+}
+
+@media screen and (max-width:500px) {
+    /*
+    path, rect, g, ellipse {
+        stroke-width: 3px;
+    }
+    .accent {
+        stroke-width: 1px;
+    }
+    */
+}
+</style>
+
+
+<style id="sceneStyle">
+
+.kloud {
+    --color: 0, 0%;
+    --lightness: 60%;
+    stroke-width: 0;
+}
+
+#smoke0, #smoke1 {
+    animation-duration: var(--anispeed);
+    animation-timing-function: linear;
+}
+
+#smoke0.one { animation-name: smoke0ani; }
+#smoke1.one { animation-name: smoke1ani; }
+
+@keyframes smoke0ani {
+    10%, 55% {
+        transform: translate(60px, 40px) scale(0.7);
+        opacity: 0.0;
+    } 56% {
+        transform: translate(60px, 40px) scale(0.7);
+        opacity: 1.0;
+    } 60% {
+        transform: translate(80px, 80px) scale(0.7);
+        opacity: 0.5;
+    } 100% {
+        transform: translate(270px, -380px) scale(5.0);
+        opacity: 0.0;
+    }
+}
+
+@keyframes smoke1ani {
+    10%, 55% {
+        transform: translate(0px, 40px) scale(0.7) rotate(0deg);
+        opacity: 0.0;
+    } 56% {
+        transform: translate(80px, 60px) scale(0.7);
+        opacity: 1.0;
+    } 60% {
+        transform: translate(-100px, 80px) scale(0.7);
+        opacity: 0.5;
+    } 100% {
+        transform: translate(-380px, -320px) scale(4.0) rotate(100deg);
+        opacity: 0.0;
+    }
+}
+
+#dots0 {
+    --lightness: 40%;
+    fill: none;
+    stroke-linecap: round;
+    stroke-dasharray: 1 20;
+}
+
+.dots0grow {
+    animation: dots0growAni var(--anispeed) linear;
+}
+
+.dots0hide {
+    animation: dots0hideAni var(--anispeed) linear;
+}
+
+@keyframes dots0growAni {
+    0%{} 5% {
+        opacity: 0;
+        ry: 0;
+        rx: 0;
+        stroke-width: 10;
+    } 10% {
+        opacity: 1;
+        ry: 0;
+        rx: 0;
+        stroke-width: 10;
+    } 29% {
+        opacity: 1;
+        ry: 80;
+        rx: 100;
+        stroke-width: 0;
+    } 30%, 100% {
+        opacity: 0;
+        ry: 0;
+        rx: 0;
+        stroke-width: 0;
+    }
+}
+
+@keyframes dots0hideAni {
+    0% {} 5% {
+        opacity: 1;
+        ry: 0;
+        rx: 0;
+        stroke-width: 0;
+    } 10% {
+        opacity: 1;
+        ry: 0;
+        rx: 0;
+        stroke-width: 6;
+    } 29% {
+        opacity: 1;
+        ry: 80;
+        rx: 100;
+        stroke-width: 1;
+    } 30%, 100% {
+        opacity: 0;
+        ry: 4;
+        rx: 5;
+        stroke-width: 0;
+    }
+}
+
+
+</style>
+
+</head>
+<body>
+<div id="holder">
+<div id="svgHolder" class="qr">
+
+    <svg id="svg0" viewbox="190 -100 200 320" xmlns="http://www.w3.org/2000/svg">
+     <defs>
+        <path id="facadeFrontWall" class="rat" />
+        <path id="rightSideWall" class="rat roofie"
+          data-vals="getSmall getLarge getSmall getLarge getLarge"
+        />
+        <clipPath id="groundClip">
+            <path stroke-width="0" d="M -100 -300 V 243 H 0 Q210 188 520 223 l 100  -10 V -300  Z" />
+        </clipPath>
+        <mask id="facadeShadeMask">
+            <use href="#facadeFrontWall" />
+        </mask>
+        <mask id="rightShadeMask">
+            <use href="#facadeFrontWall" />
+            <use href="#rightSideWall" />
+        </mask>
+     </defs>
+     
+     <g clip-path="url(#groundClip)">
+         
+      <g id="roofGroupBot"
+       class="roofGroup roofbot roofie"
+       data-vals="roofBalls roofBalls roofBalls roofBalls roofBalls"
+      >
+          <path id="facadeRoofBot" class="rat" />
+          <path id="sideRoofBot"
+           class="rat roofie"
+           data-watchers="d"
+           data-vals="getSmall getLarge getSmall getLarge getLarge"
+          />
+      </g>
+      
+      <g id="leftSide" class="roofie"
+        data-watchers="transform"
+        data-vals="one one tre tre two"
+      >
+          <path id="leftSideWall" class="rat" />
+          <path id="leftSideRoof" class="rat rooftop" />
+      </g>
+      
+      <g id="bubbles">
+          <g transform="translate(310 0)">
+            <g id="smoke0" class="smoke0 roofie" opacity="0"
+            data-watchers="transform opacity"
+            data-vals="one one one one one"
+            >
+              <ellipse class="kloud" cx="-30" cy="30" rx="15" ry="15" />
+              <ellipse class="kloud" cx="-20" cy="80" rx="10" ry="10" />
+              <ellipse class="kloud" cx="0" cy="20" rx="20" ry="20" />
+              <ellipse class="kloud" cx="0" cy="20" rx="30" ry="30" />
+            </g>
+            <g id="smoke1" class="smoke1 roofie" opacity="0"
+            data-watchers="transform opacity"
+            data-vals="one one one one one"
+            >
+              <ellipse class="kloud" cx="40" cy="30" rx="15" ry="15" />
+              <ellipse class="kloud" cx="25" cy="35" rx="20" ry="20" />
+              <ellipse class="kloud" cx="0" cy="20" rx="30" ry="30" />
+            </g>
+          </g>
+          
+          <g id="dotsGroup">
+              <ellipse id="dots0" class="roofie"
+               data-watchers="opacity rx ry stroke-width"
+               data-vals="dots0hide dots0grow dots0hide dots0grow dots0hide"
+               cx="200" cy="175" rx="15" ry="15"
+              />
+          </g>
+          
+      </g>
+     
+      <g id="facade" transform-origin="235 210">
+          <path id="facadeRearWall" class="rat" />
+          <use href="#facadeFrontWall" />
+          <path id="facadeWindow"
+           class="rat accent "
+           data-watchers="--none"
+           data-vals="winSpin fullspin0 winSpin winSpin winSpin"
+          />
+          <path id="door" class="rat accent" />
+          <path id="doorStep" class="rat accent" />
+          <path id="facadeShade"
+           class="rat shade roofie"
+           mask="url(#facadeShadeMask)"
+           data-watchers="d"
+           data-vals="go go go go go"
+          />
+      </g>
+      
+      <g id="rightside">
+          <use href="#rightSideWall" />
+          
+          <g id="rightWindowGroupHolder"
+           class="rat roofie"
+           data-watchers="transform"
+           data-vals="one two one two two"
+          >
+            <g id="rightWindowGroup"
+             class="rat roofie"
+             data-watchers="--none"
+             data-vals="fullspin0 fullspin1 fullspin1 fullspin1 fullspin0"
+            >
+              <path
+               id="rightWindowFrame"
+               class="rat accent rightWindowDouble roofie"
+               data-watchers="d"
+               data-vals="one two one tre two"
+              />
+            </g>
+            <path id="leftWindowSill"
+             class="rat accent roofie"
+             data-watchers="d transform"
+             data-vals="one two one one two"
+            />
+            <path id="rightWindowSill"
+             class="rat accent roofie"
+             data-watchers="d transform"
+             data-vals="one two one one two"
+            />
+          </g>
+          
+          <g id="rShadeMaskGroup" mask="url(#rightShadeMask)">
+            <path id="rightSideShade"
+             class="rat shade roofie"
+             data-watchers="d"
+             data-vals="small large small large small"
+            />
+          </g>
+      </g>
+      
+      <g id="roofGroupTop"
+       class="roofGroup rooftop roofie"
+       data-vals="roofBalls roofBalls roofBalls roofBalls roofBalls"
+      >
+          <path id="sideRoofTop"
+           class="rat roofie"
+           data-watchers="d";
+           data-vals="getSmall getLarge getSmall getLarge getLarge"
+          />
+          <!--path id="tinyRoofShade" class="rat shade" /-->
+          <path id="facadeRoofTop" class="rat" />
+      </g>
+      
+      <path id="ground" class="rat" />
+      
+      <g>
+      <!--ellipse id="spot" class="roofie"
+       data-watchers="fill transform"
+       data-vals="one two one two tre"
+       cx="300" cy="200" rx="10" ry="10"
+      />
+      <style>
+          #spot {
+              transform-origin: 300px 200px;
+              fill: #0f0;
+          }
+        
+          #spot.one { --Xfill: #c30; animation-name: spotAni; animation-duration: var(--anispeed);}
+          #spot.two { --Xfill: #ea0; animation-name: spotAni; animation-duration: var(--anispeed);}
+          #spot.tre { --Xfill: #30c; animation-name: spotAni; animation-duration: var(--anispeed);}
+          @keyframes spotAni {
+              0% {}
+              50% { transform: scale(5, 5); }
+              100% { fill: var(--Xfill); transform: scale(1, 1); }
+          }
+          @keyframes spotAni2 {
+              0% {}
+              50% { transform: scale(5, 5); }
+              100% { fill: var(--Xfill); transform: scale(1, 1); }
+          }
+          @keyframes spotAni3 {
+              0% {}
+              50% { transform: scale(5, 5); }
+              100% { fill: var(--Xfill); transform: scale(1, 1); }
+          }
+      </style-->
+      </g>
+ 
+ </g>
+            
+    </svg>
+    
+</div>
+
+<div id="RAT"></div>
+<div class="qr" style="height:60px;">
+    <div class="rdiv">&#9676;&#9675;&#9675;</div>
+    <div class="rdiv">&#9676;&#9679;&#9679;</div>
+    <div class="rdiv">&#9679;&#9675;&#9675;</div>
+    <div class="rdiv">&#9679;&#9675;&#9679;</div>
+    <div class="rdiv">&#9679;&#9679;&#9679;</div>
+</div>
+<!--div id="colorBar"
+  data-vals='{ "h": 200, "s": 30, "l": 80, "a": 1, "sns": 500, "low": 50, "snx": 500 }'
+  style="height:30px;width:100%" class="nosepicker"
+></div-->
+    
+    
+</div>
+</body>
+
+<script id="nosepicker" src="oneLineNose.js"></script>
+<script id="roofie-mate">
+function RoofieMate () {
+    
+    // create custome class
+    (document.body.appendChild((document.createElement('style')))).innerText = `.roofie{animation-fill-mode:forwards;}`;
+    
+    
+    // set up each roofie
+    document.querySelectorAll('.roofie').forEach(roof => this[roof.id] =
+    
+        // as an anonymouse object
+        new (function (obj) {
+        
+            // only LISTED items can be roofie-mated
+            let watchers = (obj.dataset.watchers || `transform opacity d`).trim().split(/\s+/);
+        
+            // the roofie-mating method
+            this.mate = ani => {
+                
+                // if already running ...
+                if(window.getComputedStyle(obj).getPropertyValue('animation-name') !== 'none') {
+                    
+                    // end the animation
+                    obj.dispatchEvent(new Event('animationend'));
+                    
+                    // try again
+                    this.mate(ani);
+                    
+                } else {
+                
+                    // add the current class
+                    obj.classList.add((this.ani = ani));
+                }
+        
+            };
+            
+            // when its done ...
+            obj.addEventListener('animationend', e => {
+                
+                // get the current style
+                let sty = window.getComputedStyle(obj);
+        
+                // reset each watcher prop
+                watchers.forEach(prop => obj.style.setProperty(prop, sty.getPropertyValue(prop)));
+        
+                // remove the current class
+                obj.classList.remove(this.ani);
+                
+                // stop this from stopping others
+                e.stopPropagation();
+        
+            });
+            
+            // paz, 'erms
+            this.paz = () => obj.style.animationPlayState = obj.style.animationPlayState === 'paused' ? 'running' : 'paused';
+        
+        })(roof)
+    );
+    
+}
+
+</script>
+<script id="roofieDemo">
+////////////////////////////////////////////////////////////
+// pizzaface - augosto MMXIX
+//
+// demo useage of roofie-mating script
+////////////////////////////////////////////////////////////
+
+window.addEventListener('load', e => {
+
+    const RF = new RoofieMate();
+
+    let cur = 0;
+
+    let roofies = document.querySelectorAll('.roofie');
+    
+    roofies.forEach(r => r.vals = (r.dataset.vals || '').trim().split(/\s+/));
+    
+    let butts = document.querySelectorAll('.rdiv');
+    
+    butts.forEach((obj, i) =>  obj.addEventListener('mouseover', e => handler(i)));
+    
+    let lips = document.querySelectorAll('.smoke0 > ellipse, .smoke1 > ellipse');
+
+    lips.forEach(lip => lip.orig = parseInt(lip.getAttribute('rx')));
+
+    smoke0.addEventListener('animationend', e => lips.forEach(lip => lip.style.rx = lip.style.ry = lip.orig + (Math.random() * 15 - 5)));
+
+    roofGroupTop.addEventListener('animationend', e => {
+    
+        let randH = 10 + Math.random() * 40;
+        
+        rightSideShade.style.setProperty('--height', randH);
+    
+        [roofGroupTop, roofGroupBot].forEach(obj => {
+            obj.style.setProperty('--height', randH);
+        });
+        
+    });
+    
+    const handler = num => {
+    
+        cur = num;
+    
+        roofies.forEach(r => RF[r.id].mate(r.vals[num]));
+    
+    };
+    
+    window.addEventListener('keydown', e => {
+        
+        // pause to pee
+        if (e.keyCode === 80) {
+            
+            roofies.forEach(r =>  RF[r.id].paz());
+            
+            pazDiv.innerHTML = pazDiv.innerHTML === '' ? 'paz' : '';
+            
+        }
+        
+        // tender of the space bar
+        if (e.keyCode === 32) {
+        
+            document.documentElement.style.setProperty('--anispeed', e.ctrlKey ? '5000ms' : '800ms');
+        
+            handler((cur = (cur + 1) % butts.length));
+        
+        }
+        
+    });
+    
+    handler(0);
+    
+    window.addEventListener('click', e => window.getSelection().removeAllRanges());
+    
+    /*
+    slide0.addEventListener('input', e => {
+        let tmp = 50 - Math.abs(parseInt(slide0.value) - 50 );
+        slide0.style.setProperty('--thumbH', (tmp/50) * 50 + 'px');
+        
+    });
+    */
+    
+    /*
+    colorBar.addEventListener('input', e => {
+        
+        let tmpC = colorBar.vals.h +', '+ colorBar.vals.s +'%';
+        
+        document.documentElement.style.setProperty('--color', tmpC);
+        document.documentElement.style.setProperty('--lightness',
+        colorBar.vals.l +'%');
+        
+    });
+    //*/
+    
+    
+});
+</script>
+
+
+</html>

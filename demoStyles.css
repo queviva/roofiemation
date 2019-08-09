@@ -1,0 +1,180 @@
+
+:root {
+    --main-color: #666;
+    --trans-speed: 0.3s;
+    --samp-var: #c30;
+    
+    --color: 200, 30%;
+    --lightness: 80%;
+    
+    --shade-opacity: 0.0;
+    
+    --anispeed:         800ms;
+    
+    --midness:  calc(0.37 * var(--lightness));
+    --darkness: calc(0.18 * var(--lightness));
+}
+
+* {
+    box-sizing: border-box;
+    word-wrap: break-word;
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+    color: hsl(var(--color), var(--midness));
+    xxfont-size: 22px;
+    text-align: justify;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -epub-hyphens: auto;
+    hyphens: auto;
+    user-select: none;
+}
+
+#holder {
+	position: relative;
+    margin: auto;
+    width: 100%;
+    max-width: 700px;
+    overflow: hidden;
+    background: url('bagRot.jpg');
+    background-size: cover;
+}
+
+.qa {
+    XXborder: 1px solid #000;
+}
+
+.qr {
+    XXborder: 1px solid #c30;
+}
+
+.qa, .qr {
+    transition: color linear var(--trans-speed);
+}
+
+.qa:hover, .qr:hover, a:hover, a:visited {
+    color: hsl(var(--color), var(--darkness));
+    transition: color linear var(--trans-speed);
+}
+
+.qa:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.qa > div {
+    float: left;
+    padding: 10px;
+    height: auto;
+}
+
+.qa > div:nth-child(1) {
+  width: 65%;
+}
+
+.qa > div:nth-child(2) {
+  width: 35%;
+  text-align: center;
+}
+
+#svgHolder {
+    text-align:center;
+    padding-top: 0px;
+    zoom: 1.4;
+    transition: all 300ms linear;
+}
+
+#svg0 {
+    position:relative;
+    width: 200px;
+    height: 320px;
+    overflow: visible;
+    mix-blend-mode: hard-light;
+    transition: width 300ms linear;
+}
+
+.rdiv {
+    color: hsl(var(--color), var(--midness));
+    font-family: 'luckiest guy';
+    width: 20%;
+    height: 60px;
+    padding: 5px 0px;
+    text-align: center;
+    font-size: 40px;
+    float: left;
+    border: 1px solid rgba(0,0,0,0);
+    mix-blend-mode: hard-light;
+    transition: all 300ms linear;
+}
+
+.rdiv:hover {
+    color: hsl(var(--color), calc(1.2 * var(--lightness)));
+    background-color: hsl(var(--color), var(--midness));
+    xxborder: 1px solid hsl(var(--color), var(--darkness));
+    transition: color 400ms linear;
+}
+
+#RAT {
+    position: absolute;
+    top: 10px; right: 20px;
+    font-size: 30px;
+    color: #fff;
+}
+#RAT:before {
+    content: 'ordena';
+}
+
+/*possibly a portrait mobi-fone*/
+@media screen and (max-width:500px) {
+    
+	.qa > div:nth-child(1),
+	.qa > div:nth-child(2)
+	{
+    	width: 100%;
+    }
+    
+    #svgHolder {
+        padding-top: 80px;
+        zoom: 1.5;
+    }
+    
+    #svg0 {
+        xxwidth: 160px;
+    }
+    
+    .rdiv {
+        font-size: 25px;
+    }
+    
+    #RAT:before {
+        content: 'protrato';
+    }
+    
+}
+
+/*possibly a mobile landscaper*/
+@media screen
+    and (orientation: landscape)
+    and (max-width: 760px)
+    {
+    
+    #svgHolder {
+        padding-top: 80px;
+        zoom: 1.0;
+    }
+    
+    #svg0 {
+        xxwidth: 100px;
+    }
+    
+    #RAT:before {
+        content: 'rascalo';
+    }
+}
+
+
+
