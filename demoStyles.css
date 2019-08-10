@@ -111,7 +111,7 @@ body {
     transition: all 300ms linear;
 }
 
-.rdiv:hover {
+.rdiv:focus {
     color: hsl(var(--color), calc(1.2 * var(--lightness)));
     background-color: hsl(var(--color), var(--midness));
     xxborder: 1px solid hsl(var(--color), var(--darkness));
