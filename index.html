@@ -914,7 +914,11 @@ window.addEventListener('load', e => {
     
     let butts = document.querySelectorAll('.rdiv');
     
-    butts.forEach((obj, i) =>  obj.addEventListener('mouseover', e => handler(i)));
+    //butts.forEach((obj, i) =>  obj.addEventListener('mouseover', e => handler(i)));
+    butts.forEach((obj, i) =>  obj.addEventListener(
+        ('ontouchstart' in document.documentElement) ? 'touchstart' : 'mouseover',
+        e => handler(i)
+    ));
     
     let lips = document.querySelectorAll('.smoke0 > ellipse, .smoke1 > ellipse');
 
