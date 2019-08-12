@@ -5,6 +5,8 @@
 <!--link id="luckiestFont" href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet"-->
 <link id="demoStyles" rel="stylesheet" type="text/css" href="demoStyles.css">
 
+<script src="../shake.js/shake.js"></script>
+
 <style id="roofieStyle">
 
 path, rect, g, ellipse {
@@ -765,7 +767,7 @@ path, rect, g, ellipse {
       >
           <path id="sideRoofTop"
            class="rat roofie"
-           data-watchers="d";
+           data-watchers="d"
            data-vals="getSmall getLarge getSmall getLarge getLarge"
           />
           <!--path id="tinyRoofShade" class="rat shade" /-->
@@ -968,6 +970,19 @@ window.addEventListener('load', e => {
         
     });
     
+    const skake = new Shake();
+    skake.start();
+    
+    window.addEventListener('shake', e =>
+        document.documentElement.style.setProperty(
+            '--anispeed',
+            document.documentElement.style.getProperty('--anispeed')
+             == '800ms' ? '5000ms' : '800ms'
+        )
+        
+    );
+    
+    
     handler(0);
     
     //window.addEventListener('click', e => window.getSelection().removeAllRanges());
@@ -994,6 +1009,8 @@ window.addEventListener('load', e => {
     
     
 });
+
+
 </script>
 
 
