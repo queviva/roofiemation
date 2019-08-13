@@ -815,26 +815,36 @@ path, rect, g, ellipse {
     
 </div>
 
-<div id="RAT"></div>
-
-<div class="qr" style="height:60px;">
+<div id="slideHolder"
+ style="
+    text-align:center;
+    padding-top:10px;
+    padding-bottom:5px;
+">
+    <input
+     id="slide0"
+     type="range"
+     list="roomList"
+     min="0" max="4"
+     value="0"
+     step="1"
+    >
+    <datalist id="roomList">
+        <option>1</option>
+    </datalist>
+    
+</div>
+<!--div class="qr" style="height:60px;">
     <div class="rdiv">&#9675;&#9675;&#9675;</div>
     <div class="rdiv">&#9675;&#9679;&#9679;</div>
     <div class="rdiv">&#9679;&#9675;&#9675;</div>
     <div class="rdiv">&#9679;&#9675;&#9679;</div>
     <div class="rdiv">&#9679;&#9679;&#9679;</div>
-</div>
+</div-->
 
-<!--div id="colorBar"
-  data-vals='{ "h": 200, "s": 30, "l": 80, "a": 1, "sns": 500, "low": 50, "snx": 500 }'
-  style="height:30px;width:100%" class="nosepicker"
-></div-->
-    
-    
 </div>
 </body>
 
-<!--script id="nosepicker" src="oneLineNose.js"></script-->
 <script id="roofie-mate">
 function RoofieMate () {
     
@@ -914,13 +924,15 @@ window.addEventListener('load', e => {
     
     roofies.forEach(r => r.vals = (r.dataset.vals || '').trim().split(/\s+/));
     
-    let butts = document.querySelectorAll('.rdiv');
+    //let butts = document.querySelectorAll('.rdiv');
     
     //butts.forEach((obj, i) =>  obj.addEventListener('mouseover', e => handler(i)));
+    /*
     butts.forEach((obj, i) =>  obj.addEventListener(
         ('ontouchstart' in document.documentElement) ? 'touchstart' : 'mouseover',
         e => handler(i)
     ));
+    */
     
     let lips = document.querySelectorAll('.smoke0 > ellipse, .smoke1 > ellipse');
 
@@ -985,15 +997,11 @@ window.addEventListener('load', e => {
     
     handler(0);
     
-    //window.addEventListener('click', e => window.getSelection().removeAllRanges());
+    //window.addEventListener('click', e => window.getSelection().removeAll    Ranges());
     
-    /*
     slide0.addEventListener('input', e => {
-        let tmp = 50 - Math.abs(parseInt(slide0.value) - 50 );
-        slide0.style.setProperty('--thumbH', (tmp/50) * 50 + 'px');
-        
+        handler(slide0.value);
     });
-    */
     
     /*
     colorBar.addEventListener('input', e => {
