@@ -122,16 +122,18 @@ body {
     padding-bottom: 5px;
 }
 
-#slide0{  }
+#slide0 {
+    --thumbH: 30px;
+}
 
 input[type=range] {
     -webkit-appearance: none;
     -moz-appearance: none;
     display: inline-block;
     margin: 0;
-    height: 30px;
+    height: var(--thumbH);
     width: 80%;
-    border-radius: 15px;
+    border-radius: calc(var(--thumbH) / 2);
     background-color: hsl(var(--color), var(--midness));
     mix-blend-mode: hard-light;
 }
@@ -140,11 +142,11 @@ input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
     background-color: hsl(var(--color), var(--lightness));
     opacity: 1.7;
-    height: 30px;
+    height: var(--thumbH);
     margin-bottom: 0px;
-    width: 30px;
+    width: var(--thumbH);
     border: 1px;
-    border-radius: 15px;
+    border-radius: calc(var(--thumbH) / 2);
 }
 
 input[type=range]:focus {
@@ -169,6 +171,9 @@ input[type=range]:focus {
         font-size: 20px;
     }
     
+    #slide0 {
+        --thumbH: 60px;
+    }
 }
 
 /*possibly a mobile landscaper*/
