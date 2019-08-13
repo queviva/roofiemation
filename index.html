@@ -970,19 +970,17 @@ window.addEventListener('load', e => {
         
     });
     
-    const skake = new Shake({threshold: 1, timeout: 300});
+    const skake = new Shake({threshold: 10, timeout: 600});
     skake.start();
     
-    window.addEventListener('shake', e => {
-        RAT.innerHTML = e;
-        console.log('skake ' + e);
+    window.addEventListener('shake', e =>
         document.documentElement.style.setProperty(
             '--anispeed',
             document.documentElement.style.getPropertyValue('--anispeed') ==
             '800ms' ? '5000ms' : '800ms'
         )
     
-    });
+    );
     
     
     handler(0);
