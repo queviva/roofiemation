@@ -815,24 +815,14 @@ path, rect, g, ellipse {
     
 </div>
 
-<div id="slideHolder"
- style="
-    text-align:center;
-    padding-top:10px;
-    padding-bottom:5px;
-">
+<div id="slideHolder">
     <input
      id="slide0"
      type="range"
-     list="roomList"
      min="0" max="4"
      value="0"
      step="1"
     >
-    <datalist id="roomList">
-        <option>1</option>
-    </datalist>
-    
 </div>
 <!--div class="qr" style="height:60px;">
     <div class="rdiv">&#9675;&#9675;&#9675;</div>
@@ -845,7 +835,8 @@ path, rect, g, ellipse {
 </div>
 </body>
 
-<script id="roofie-mate">
+<!--script id="roofie-mate">
+
 function RoofieMate () {
     
     // create custome class
@@ -870,7 +861,7 @@ function RoofieMate () {
                     // end the animation
                     obj.dispatchEvent(new Event('animationend'));
                     
-                    // try again
+                    // then try again
                     this.mate(ani);
                     
                 } else {
@@ -896,7 +887,7 @@ function RoofieMate () {
                 // stop this from stopping others
                 e.stopPropagation();
         
-            });
+            }, {passive: false});
             
             // paz, 'erms
             this.paz = () => obj.style.animationPlayState = obj.style.animationPlayState === 'paused' ? 'running' : 'paused';
@@ -906,7 +897,8 @@ function RoofieMate () {
     
 }
 
-</script>
+</script-->
+<script src="roofiemation.min.js"></script>
 <script id="roofieDemo">
 ////////////////////////////////////////////////////////////
 // pizzaface - augosto MMXIX
@@ -967,7 +959,7 @@ window.addEventListener('load', e => {
             
             roofies.forEach(r =>  RF[r.id].paz());
             
-            pazDiv.innerHTML = pazDiv.innerHTML === '' ? 'paz' : '';
+            //pazDiv.innerHTML = pazDiv.innerHTML === '' ? 'paz' : '';
             
         }
         
@@ -976,7 +968,9 @@ window.addEventListener('load', e => {
             
             document.documentElement.style.setProperty('--anispeed', e.ctrlKey ? '5000ms' : '800ms');
         
-            handler((cur = (cur + 1) % butts.length));
+            //handler((cur = (cur + 1) % butts.length));
+            //slide0.value = ((cur = (cur + 1) % 5));
+            //slide0.dispatchEvent(new Event('input'));
         
         }
         
@@ -1001,6 +995,10 @@ window.addEventListener('load', e => {
     
     slide0.addEventListener('input', e => {
         handler(slide0.value);
+    });
+    
+    roofGroupTop.addEventListener('dblclick', e => {
+        roofies.forEach(r =>  RF[r.id].paz());
     });
     
     /*
