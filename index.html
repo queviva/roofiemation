@@ -970,10 +970,15 @@ window.addEventListener('load', e => {
         
     });
     
-    const skake = new Shake({threshold: 5, timeout: 300});
+    const skake = new Shake({threshold: 0.1, timeout: 300});
     skake.start();
     
+    //window.addEventListener('devicemotion', e => console.log(e));
+    
+    RAT.innerHTML = ('ondevicemotion' in window);
+    
     window.addEventListener('shake', e => {
+        RAT.innerHTML = e;
         console.log('skake ' + e);
         document.documentElement.style.setProperty(
             '--anispeed',
