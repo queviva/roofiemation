@@ -5,8 +5,6 @@
 <!--link id="luckiestFont" href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet"-->
 <link id="demoStyles" rel="stylesheet" type="text/css" href="demoStyles.css">
 
-<script src="shake.js"></script>
-
 <style id="roofieStyle">
 
 path, rect, g, ellipse {
@@ -114,10 +112,63 @@ path, rect, g, ellipse {
 
 #facadeFrontWall {
     --smallD: 'M214 208 Q200 140 195 82 Q210 60 220 25 Q230 50 250 70 Q250 100 265 205 Z M250 70 Q275 70 320 75 Q321 130 325 205 L265 205 Q250 100 250 70 Z';
+    
+    --smallBowD: 'M214 208 Q195 150 195 82 Q210 60 220 25 Q230 50 250 70 Q250 100 265 205 Z M250 70 Q275 70 320 75 Q321 130 325 205 L265 205 Q250 100 250 70 Z';
+    
+    --curD: var(--smallBowD);
+    
+    transform-origin: 265px 208px;
+    animation-duration: var(--anispeed);
+    animation-delay: 0ms;
+}
+
+@keyframes facadeFrontWallAni {
+    0% {}
+    42%, 60% {
+        d: path(var(--smallD));
+        transform: scale(1, 1);
+        xxanimation-timing-function: cubic-bezier(0.3, 1.0, 0.6, 2.0);
+        animation-timing-function: linear;
+    }
+    65% {
+        d: path(var(--smallBowD));
+        transform: scale(1.1, 0.985);
+        animation-timing-function: cubic-bezier(0.3, 1.2, 0.6, 1.6);
+    }
+    90%, /* {
+        transform: scale(1.0, 1.0);
+        d: path(var(--aniD));
+        animation-timing-function: cubic-bezier(0.3, 1.5, 0.6, 1.4);
+    }
+    86% {
+        transform: scale(1.03, 0.95);
+        d: path(var(--aniBowD));
+        animation-timing-function: cubic-bezier(0.3, 1.5, 0.6, 1.4);
+    }*/
+    100% {
+        transform: scale(1.0, 1.0);
+        d: path(var(--smallD));
+    }
+}
+
+#facadeFrontWall.go {
+    animation-name: facadeFrontWallAni;
+    animation-timing-function: cubic-bezier(0.3, -1.6, 0.6, 1.6);
+}
+
+#roofGroupTop {
+    xxopacity: 0.5;
+    transform-origin: 300px 150px;
+}
+
+#sideRoofTop {
+    --smallD: 'M300 50 Q300 80 280 130 Q315 120 350 120 Q365 100 380 20 Q 340 50 300 50 Z';
+    --largeD: 'M300 50 Q300 80 280 130 Q325 120 375 120 Q400 80 414 20 Q 340 50 300 50Z';
+    --curD: var(--largeD);
+    animation-timing-function: linear;
 }
 
 #rightSideWall {
-    
     --smallD: 'M300 205 Q300 190 290 120 Q310 112 340 110 Q342 160 345 205 Z M345 205 Q342 160 340 110 Q350 70 370 35 Q377 80 390 120 Q383 152 380 208 Z';
     
     --smallBowD: 'M300 205 Q290 170 290 120 Q310 112 340 110 Q342 160 345 205 Z M345 205 Q342 160 340 110 Q350 70 370 35 Q377 80 390 120 Q393 155 380 208 Z';
@@ -138,18 +189,6 @@ path, rect, g, ellipse {
     transform-origin: 310px 206px;
     animation-duration: var(--anispeed);
     animation-delay: 0ms;
-}
-
-#roofGroupTop {
-    xxopacity: 0.5;
-    transform-origin: 300px 150px;
-}
-
-#sideRoofTop {
-    --smallD: 'M300 50 Q300 80 280 130 Q315 120 350 120 Q365 100 380 20 Q 340 50 300 50 Z';
-    --largeD: 'M300 50 Q300 80 280 130 Q325 120 375 120 Q400 80 414 20 Q 340 50 300 50Z';
-    --curD: var(--largeD);
-    animation-timing-function: linear;
 }
 
 #rightSideWall.getSmall {
@@ -202,7 +241,7 @@ path, rect, g, ellipse {
 }
 
 .getLarge {
-    animation-duration: calc(var(--anispeed) * (1/10));
+    animation-duration: calc(0.10 * var(--anispeed));
     animation-delay: calc(0.30 * var(--anispeed));
     animation-name: gla;
 }
@@ -260,11 +299,24 @@ path, rect, g, ellipse {
     transform-origin: 220px 83px;
 }
 
-.winSpin {
-    --turns: -0;
-    animation-name: spinner;
-    animation-duration: calc(var(--anispeed) * 0.3);
-    animation-delay: calc(var(--anispeed) * 0.61);
+#facadeWindowHolder.go {
+    animation-name: FWHAni;
+    animation-timing-function: cubic-bezier(0.3, -1.6, 0.6, 1.6);
+}
+
+@keyframes FWHAni {
+    0% {}
+    42%, 60% {
+        transform: translate(0px, 0px);
+        animation-timing-function: linear;
+    }
+    65% {
+        transform: translate(0px, 20px);
+        animation-timing-function: cubic-bezier(0.3, 1.2, 0.6, 1.6);
+    }
+    90%, 100% {
+        transform: translate(0px, 0px);
+    }
 }
 
 #door {
@@ -272,8 +324,28 @@ path, rect, g, ellipse {
     transform-origin: 230px 268px;
 }
 
+#door.go {
+    animation-name: doorAni;
+    animation-timing-function: cubic-bezier(0.3, -1.6, 0.6, 1.6);
+}
+
+@keyframes doorAni {
+    0% {}
+    42%, 60% {
+        transform: scale(1, 1);
+        animation-timing-function: linear;
+    }
+    65% {
+        transform: scale(1.15, 0.95);
+        animation-timing-function: cubic-bezier(0.3, 1.2, 0.6, 1.6);
+    }
+    90%, 100% {
+        transform: scale(1.0, 1.0);
+    }
+}
+
 #doorStep {
-    --smallD: 'M220 207 l-1.5 -4 l25 -3 l8 0.5 l1 5 Z';
+    --smallD: 'M220 207 l-1 -6 l25 -3 l8 0.5 l1 9 Z';
     --lightness: var(--darkness);
     stroke-width: 2px;
 }
@@ -283,6 +355,13 @@ path, rect, g, ellipse {
     animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.6);
     xxanimation-duration: calc(var(--anispeed) * (3/7));
     animation-duration: var(--anispeed);
+}
+
+.winSpin {
+    --turns: -0.05;
+    animation-name: spinner;
+    animation-duration: calc(var(--anispeed) * 0.3);
+    animation-delay: calc(var(--anispeed) * 0.61);
 }
 
 .fullspin0 { --turns: 1; animation-name: spinner; }
@@ -500,16 +579,6 @@ path, rect, g, ellipse {
     }
 }
 
-@media screen and (max-width:500px) {
-    /*
-    path, rect, g, ellipse {
-        stroke-width: 3px;
-    }
-    .accent {
-        stroke-width: 1px;
-    }
-    */
-}
 </style>
 
 <style id="sceneStyle">
@@ -633,7 +702,9 @@ path, rect, g, ellipse {
 
     <svg id="svg0" viewbox="190 -100 200 320" xmlns="http://www.w3.org/2000/svg">
      <defs>
-        <path id="facadeFrontWall" class="rat" />
+        <path id="facadeFrontWall" class="rat roofie"
+          data-vals="go go go go go"
+        />
         <path id="rightSideWall" class="rat roofie"
           data-vals="getSmall getLarge getSmall getLarge getLarge"
         />
@@ -705,12 +776,22 @@ path, rect, g, ellipse {
       <g id="facade" transform-origin="235 210">
           <path id="facadeRearWall" class="rat" />
           <use href="#facadeFrontWall" />
-          <path id="facadeWindow"
-           class="rat accent "
+          <g id="facadeWindowHolder"
+           class="rat roofie"
            data-watchers="--none"
-           data-vals="winSpin fullspin0 winSpin winSpin winSpin"
+           data-vals="go go go go go"
+          >
+            <path id="facadeWindow"
+             class="rat accent"
+             data-watchers="--none"
+             data-vals="winspin winspin winspin winspin winspin"
+             />
+          </g>
+          <path id="door"
+           class="rat accent roofie"
+           data-watchers="transform"
+           data-vals="go go go go go"
           />
-          <path id="door" class="rat accent" />
           <path id="doorStep" class="rat accent" />
           <path id="facadeShade"
            class="rat shade roofie"
@@ -776,21 +857,32 @@ path, rect, g, ellipse {
       
       <path id="ground" class="rat" />
       
-      <g>
-      <!--ellipse id="spot" class="roofie"
+      <!--g>
+      <ellipse id="spot" class="Xroofie"
        data-watchers="fill transform"
        data-vals="one two one two tre"
        cx="300" cy="200" rx="10" ry="10"
       />
-      <style>
+      <style id="spotStyle">
           #spot {
-              transform-origin: 300px 200px;
+              --quick: 800ms;
+              --slow: 5000ms;
+              xtransform-origin: 300px 200px;
               fill: #0f0;
           }
         
-          #spot.one { --Xfill: #c30; animation-name: spotAni; animation-duration: var(--anispeed);}
-          #spot.two { --Xfill: #ea0; animation-name: spotAni; animation-duration: var(--anispeed);}
-          #spot.tre { --Xfill: #30c; animation-name: spotAni; animation-duration: var(--anispeed);}
+          #spot.one { --Xfill: #c30; animation-name: spotAni;
+            animation-duration: var(--slow);
+              
+          }
+          #spot.two { --Xfill: #ea0; animation-name: spotAni;
+            animation-duration: var(--quick);
+              
+          }
+          #spot.tre { --Xfill: #30c; animation-name: spotAni;
+            animation-duration: 900ms;
+          }
+          
           @keyframes spotAni {
               0% {}
               50% { transform: scale(5, 5); }
@@ -806,10 +898,10 @@ path, rect, g, ellipse {
               50% { transform: scale(5, 5); }
               100% { fill: var(--Xfill); transform: scale(1, 1); }
           }
-      </style-->
-      </g>
+      </style>
+      </g-->
  
- </g>
+     </g>
             
     </svg>
     
@@ -819,44 +911,41 @@ path, rect, g, ellipse {
     <input
      id="slide0"
      type="range"
-     min="0" max="4"
+     min="0"
+     max="4"
      value="0"
      step="1"
     >
 </div>
-<!--div class="qr" style="height:60px;">
-    <div class="rdiv">&#9675;&#9675;&#9675;</div>
-    <div class="rdiv">&#9675;&#9679;&#9679;</div>
-    <div class="rdiv">&#9679;&#9675;&#9675;</div>
-    <div class="rdiv">&#9679;&#9675;&#9679;</div>
-    <div class="rdiv">&#9679;&#9679;&#9679;</div>
-</div-->
+
 
 </div>
 </body>
 
-<!--script id="roofie-mate">
+<script id="roofie-mate">
 
-function RoofieMate () {
+function RoofieMate (customeClasseName) {
     
-    // create custome class
-    (document.body.appendChild((document.createElement('style')))).innerText = `.roofie{animation-fill-mode:forwards;}`;
+    // get custome classe name or default to '.roofie'
+    let classeName = customeClasseName || '.roofie';
     
+    // create custome classe
+    (document.body.appendChild((document.createElement('style')))).innerText = `${classeName}{animation-fill-mode:forwards;}`;
     
     // set up each roofie
-    document.querySelectorAll('.roofie').forEach(roof => this[roof.id] =
+    document.querySelectorAll(classeName).forEach(roof => this[roof.id] =
     
         // as an anonymouse object
         new (function (obj) {
         
-            // only LISTED items can be roofie-mated
+            // only LISTED properties can be roofie-mated
             let watchers = (obj.dataset.watchers || `transform opacity d`).trim().split(/\s+/);
         
             // the roofie-mating method
             this.mate = ani => {
                 
                 // if already running ...
-                if(window.getComputedStyle(obj).getPropertyValue('animation-name') !== 'none') {
+                if(window.getComputedStyle(obj).animationName !== 'none') {
                     
                     // end the animation
                     obj.dispatchEvent(new Event('animationend'));
@@ -866,20 +955,21 @@ function RoofieMate () {
                     
                 } else {
                 
-                    // add the current class
+                    // add (and set) the current class
                     obj.classList.add((this.ani = ani));
+                    
                 }
         
             };
             
-            // when its done ...
+            // when it's done ...
             obj.addEventListener('animationend', e => {
                 
                 // get the current style
                 let sty = window.getComputedStyle(obj);
         
                 // reset each watcher prop
-                watchers.forEach(prop => obj.style.setProperty(prop, sty.getPropertyValue(prop)));
+                watchers.forEach(prop => obj.style[prop] = sty[prop]);
         
                 // remove the current class
                 obj.classList.remove(this.ani);
@@ -887,18 +977,22 @@ function RoofieMate () {
                 // stop this from stopping others
                 e.stopPropagation();
         
+            // stopping propagation, so passive is false
             }, {passive: false});
             
             // paz, 'erms
             this.paz = () => obj.style.animationPlayState = obj.style.animationPlayState === 'paused' ? 'running' : 'paused';
         
+        // pass each roofie-classed element in to the constructor
         })(roof)
+        
     );
     
 }
 
-</script-->
-<script src="roofiemation.min.js"></script>
+</script>
+<!--script src="roofiemation.min.js"></script-->
+
 <script id="roofieDemo">
 ////////////////////////////////////////////////////////////
 // pizzaface - augosto MMXIX
@@ -908,23 +1002,23 @@ function RoofieMate () {
 
 window.addEventListener('load', e => {
 
-    const RF = new RoofieMate();
+    // hashtable lookup for overwriting the stylesheet
+    /*
+    const cssHash = {};
+    for (let i in (ssr = document.getElementById('spotStyle').sheet.rules)){
+        cssHash[ssr[i].selectorText] = ssr[i];
+    }
+    */
+    
+    const randBetween = (bot, top) =>  ~~(Math.random() * (top - bot) ) + bot;
+    
+    const RFM = new RoofieMate();//'.roofie');
 
     let cur = 0;
 
     let roofies = document.querySelectorAll('.roofie');
     
     roofies.forEach(r => r.vals = (r.dataset.vals || '').trim().split(/\s+/));
-    
-    //let butts = document.querySelectorAll('.rdiv');
-    
-    //butts.forEach((obj, i) =>  obj.addEventListener('mouseover', e => handler(i)));
-    /*
-    butts.forEach((obj, i) =>  obj.addEventListener(
-        ('ontouchstart' in document.documentElement) ? 'touchstart' : 'mouseover',
-        e => handler(i)
-    ));
-    */
     
     let lips = document.querySelectorAll('.smoke0 > ellipse, .smoke1 > ellipse');
 
@@ -936,9 +1030,7 @@ window.addEventListener('load', e => {
     
         let randH = 10 + Math.random() * 40;
         
-        rightSideShade.style.setProperty('--height', randH);
-    
-        [roofGroupTop, roofGroupBot].forEach(obj => {
+        [roofGroupTop, roofGroupBot, rightSideShade].forEach(obj => {
             obj.style.setProperty('--height', randH);
         });
         
@@ -948,7 +1040,7 @@ window.addEventListener('load', e => {
     
         cur = num;
     
-        roofies.forEach(r => RF[r.id].mate(r.vals[num]));
+        roofies.forEach(r => RFM[r.id].mate(r.vals[num]));
     
     };
     
@@ -957,7 +1049,7 @@ window.addEventListener('load', e => {
         // pause to pee
         if (e.keyCode === 80) {
             
-            roofies.forEach(r =>  RF[r.id].paz());
+            roofies.forEach(r =>  RFM[r.id].paz());
             
             //pazDiv.innerHTML = pazDiv.innerHTML === '' ? 'paz' : '';
             
@@ -966,8 +1058,18 @@ window.addEventListener('load', e => {
         // tender of the space bar
         if (e.keyCode === 32) {
             
+            // then rest the animation
             document.documentElement.style.setProperty('--anispeed', e.ctrlKey ? '5000ms' : '800ms');
         
+            //cssHash['#spot.one'].style.setProperty('animation-duration', e.ctrlKey ? '9000ms' : '800ms');
+            /*
+            '#spot.one #spot.two #spot.tre'.split(' ').forEach(rul => {
+                console.log('changing ' + rul)
+                cssHash[rul].style.animationDuration =
+                e.ctrlKey ? '9000ms' : '800ms';
+            });
+            */
+            
             //handler((cur = (cur + 1) % butts.length));
             //slide0.value = ((cur = (cur + 1) % 5));
             //slide0.dispatchEvent(new Event('input'));
@@ -976,42 +1078,16 @@ window.addEventListener('load', e => {
         
     });
     
-    const skake = new Shake({threshold: 10, timeout: 600});
-    skake.start();
-    
-    window.addEventListener('shake', e =>
-        document.documentElement.style.setProperty(
-            '--anispeed',
-            document.documentElement.style.getPropertyValue('--anispeed') ==
-            '800ms' ? '5000ms' : '800ms'
-        )
-    
-    );
-    
     
     handler(0);
-    
-    //window.addEventListener('click', e => window.getSelection().removeAll    Ranges());
     
     slide0.addEventListener('input', e => {
         handler(slide0.value);
     });
     
     roofGroupTop.addEventListener('dblclick', e => {
-        roofies.forEach(r =>  RF[r.id].paz());
+        roofies.forEach(r =>  RFM[r.id].paz());
     });
-    
-    /*
-    colorBar.addEventListener('input', e => {
-        
-        let tmpC = colorBar.vals.h +', '+ colorBar.vals.s +'%';
-        
-        document.documentElement.style.setProperty('--color', tmpC);
-        document.documentElement.style.setProperty('--lightness',
-        colorBar.vals.l +'%');
-        
-    });
-    //*/
     
     
 });
