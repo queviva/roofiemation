@@ -30,10 +30,12 @@ path, rect, g, ellipse {
 
 .rooftop {
     --lightness: var(--midness);
+    opacity: 1.0;
 }
 
 .shade {
-    --lightness: 0%;
+    --lightness: 20%;
+    stroke-width: 0;
     opacity: var(--shade-opacity);
 }
 
@@ -66,6 +68,10 @@ path, rect, g, ellipse {
 
 #leftSideWall {
     --smallD: 'M225 207 l-10 -50 q-15 0 -30 10 q10 20 12 43 Z';
+}
+
+#leftSideShade {
+    --smallD: 'M225 179 V150 H175 V187 Z';
 }
 
 #leftSideRoof {
@@ -515,7 +521,7 @@ path, rect, g, ellipse {
 
 #facadeShade {
     stroke-width: 0;
-    --smallD: 'M 180 0 H 340 V 135 L 325 135 l-30 -30 l-43 -5 l-10 10 l-25 -40 l-30 50 Z';
+    --smallD: 'M 180 0 H 340 V 135 L325 135 L295 105 L252 100 L242 110 L217 70 L187 120 Z';
     animation-duration: var(--anispeed);
     animation-timing-function: linear;
 }
@@ -523,24 +529,28 @@ path, rect, g, ellipse {
 #facadeShade.go { animation-name: facShadeAni; }
 
 @keyframes facShadeAni {
-    0%, 60%, 100% {
+    60%, 100% {
         d: path(var(--smallD));
         opacity: var(--shade-opacity);
     } 18%, 50% {
-        d: path('M 180 0 H 340 V 135 L 325 135 l-30 -60 l-43 -5 l-10 10 l-25 -40 l-19 40Z');
+        d: path('M 180 0 H 340 V 135 L325 135 L295 70 L252 65 L242 75 L217 35 L198 75Z');
         opacity: 0.0;
+    } 61% {
+        d: path('M 180 0 H 340 V 135 L325 135 L295 105 L257 100 L240 110 L217 70 L187 120 Z');
+        opacity: var(--shade-opacity);
     } 82% {
-        d: path('M 180 0 H 340 V 135 L 325 135 l-30 -48 l-43 0 l-10 10 l-25 -40 l-30 50Z');
-        opacity: calc(0.8 * var(--shade-opacity));
+        d: path('M 180 0 H 340 V 135 L325 135 L290 87 L248 87 L242 97 L217 57 L187 107Z');
+        opacity: var(--shade-opacity);
     }
 }
 
 #rightSideShade {
     stroke-width: 0;
     --height: 80;
-    --smallD: 'M350 40 Q370 115 400 190 L 480 0 H 350 Z M340 123 V 80 H 310 L 276 133 L 294 155 L 312 148 Z ';
-    --midD: 'M350 40 Q370 115 400 190 L 480 0 H 350 Z M340 123 V 80 H 310 L 276 133 L 204 155 L 312 148 Z ';
-    --largeD: 'M380 45 Q 390 120 412 170 L 480 0 H 380 Z M374 118 V 80 H 310 L 276 133 L 294 165 L 344 143 Z ';
+    --smallD: 'M350 40 Q 370 115 400 190 H480V0 H 350 Z M340 123 V 80 H 310 L 276 133 L 294 155 Z ';
+    --smallBowD: 'M350 40 Q 385 120 410 190 H480V0 H 350 Z M340 123 V 80 H 310 L 276 133 L 294 155 Z ';
+    --largeBowD: 'M380 45 Q 430 143 430 250 H480V0 H 380 Z M374 118 V 80 H 310 L 276 133 L 294 165 Z ';
+    --largeD: 'M380 45 Q 390 120 420 210 H480V0 H 380 Z M374 118 V 80 H 310 L 276 133 L 294 165 Z ';
     --curD: var(--largeD);
     animation-duration: var(--anispeed);
     animation-timing-function: linear;
@@ -555,10 +565,12 @@ path, rect, g, ellipse {
         d: path(var(--smallD));
         opacity: var(--shade-opacity);
     } 10%, 50% {
-        d: path(var(--midD));
+        d: path(var(--smallD));
         transform: translate(0px, -80px);
         xxtransform: translate(0px, calc(-1px * var(--height)));
         opacity: 0.0;
+    } 64% {
+        d: path(var(--smallBowD));
     } 82% {
         transform: translate(0px, -15px);
         opacity: calc(0.8 * var(--shade-opacity));
@@ -573,6 +585,8 @@ path, rect, g, ellipse {
     } 18%, 50% {
         transform: translate(0px, -80px);
         opacity: 0.0;
+    } 64% {
+        d: path(var(--largeBowD));
     } 82% {
         transform: translate(0px, -15px);
         opacity: calc(0.8 * var(--shade-opacity));
@@ -702,6 +716,7 @@ path, rect, g, ellipse {
 
     <svg id="svg0" viewbox="190 -100 200 320" xmlns="http://www.w3.org/2000/svg">
      <defs>
+        <path id="leftSideWall" class="rat" />
         <path id="facadeFrontWall" class="rat roofie"
           data-vals="go go go go go"
         />
@@ -711,6 +726,9 @@ path, rect, g, ellipse {
         <clipPath id="groundClip">
             <path stroke-width="0" d="M -100 -300 V 243 H 0 Q210 188 520 223 l 100  -10 V -300  Z" />
         </clipPath>
+        <mask id="leftShadeMask">
+            <use href="#leftSideWall" />
+        </mask>
         <mask id="facadeShadeMask">
             <use href="#facadeFrontWall" />
         </mask>
@@ -738,7 +756,10 @@ path, rect, g, ellipse {
         data-watchers="transform"
         data-vals="one one tre tre two"
       >
-          <path id="leftSideWall" class="rat" />
+          <use href="#leftSideWall" />
+          <g mask="url(#leftShadeMask)">
+            <path id="leftSideShade" class="rat shade" />
+          </g>
           <path id="leftSideRoof" class="rat rooftop" />
       </g>
       
@@ -796,7 +817,7 @@ path, rect, g, ellipse {
           <path id="facadeShade"
            class="rat shade roofie"
            mask="url(#facadeShadeMask)"
-           data-watchers="d"
+           data-watchers="d opacity"
            data-vals="go go go go go"
           />
       </g>
@@ -833,11 +854,11 @@ path, rect, g, ellipse {
             />
           </g>
           
-          <g id="rShadeMaskGroup" mask="url(#rightShadeMask)">
+          <g mask="url(#rightShadeMask)">
             <path id="rightSideShade"
              class="rat shade roofie"
-             data-watchers="d"
-             data-vals="small large small large small"
+             data-watchers="d opacity"
+             data-vals="small large small large large"
             />
           </g>
       </g>
@@ -851,7 +872,7 @@ path, rect, g, ellipse {
            data-watchers="d"
            data-vals="getSmall getLarge getSmall getLarge getLarge"
           />
-          <!--path id="tinyRoofShade" class="rat shade" /-->
+          <path id="tinyRoofShade" class="rat shade" />
           <path id="facadeRoofTop" class="rat" />
       </g>
       

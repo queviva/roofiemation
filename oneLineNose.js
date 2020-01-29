@@ -49,9 +49,19 @@ document.querySelectorAll('.nosepicker').forEach(nose => {
                 + ')'
         
             ),
+            //repeating-linear-gradient( -45deg, rgba(255, 255, 255, .2), rgba(255, 255, 255, .2) 15px, transparent 15px, transparent 30px)
+            
+            backgroundImage: (nose.style.backgroundImage = `
+            
+            repeating-linear-gradient( -45deg, rgba(200, 200, 200,
+            ${ 1 - v.a }), rgba(200, 200, 200, ${ 1 - v.a }) 15px, transparent 15px, transparent 30px)
+            
+            `)
+            
             
             // create the transparent hackground image
-            backgroundImage: (nose.style.backgroundImage = "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30'><path fill='rgba(200,200,200," + (1 - v.a) + "' d='M 30 15 V 0 L 0 30 H 15 Z M 15 0 H 0 V 15 Z'/><path fill='rgba(255,255,255," + (1 - v.a) + ")' d='M 30 0 H 15 L 0 15 V 30 Z M 15 30 H 30 V 15 Z'/></svg>\")")
+            //backgroundImage: (nose.style.backgroundImage = "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30'><path fill='rgba(200,200,200," + (1 - v.a) + "' d='M 30 15 V 0 L 0 30 H 15 Z M 15 0 H 0 V 15 Z'/><path fill='rgba(255,255,255," + (1 - v.a) + ")' d='M 30 0 H 15 L 0 15 V 30 Z M 15 30 H 30 V 15 Z'/></svg>\")")
+            
         
         }))
         

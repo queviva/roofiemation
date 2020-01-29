@@ -4,9 +4,10 @@
     --samp-var: #c30;
     
     --color: 200, 30%;
+    /*--color: 100, 30%;*/
     --lightness: 80%;
     
-    --shade-opacity: 0.0;
+    --shade-opacity: 0.5;
     
     --anispeed:         800ms;
     
@@ -38,8 +39,8 @@ body {
     width: 100%;
     max-width: 700px;
     overflow: hidden;
-    background: url('bagRot.jpg');
-    background-size: cover;
+    xxxbackground: url('bagRot.jpg');
+    xxxbackground-size: cover;
 }
 
 .qa {
@@ -92,7 +93,7 @@ body {
     width: 200px;
     height: 320px;
     overflow: visible;
-    mix-blend-mode: hard-light;
+    xxxmixblend-mode: hard-light;
     transition: width 300ms linear;
 }
 
@@ -106,7 +107,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    mix-blend-mode: hard-light;
+    xxxmix-blend-mode: hard-light;
     transition: all 300ms linear;
 }
 
@@ -135,7 +136,7 @@ input[type=range] {
     width: 80%;
     border-radius: calc(var(--thumbH) / 2);
     background-color: hsl(var(--color), var(--midness));
-    mix-blend-mode: hard-light;
+    xxxmix-blend-mode: hard-light;
 }
 
 input[type=range]::-webkit-slider-thumb {
