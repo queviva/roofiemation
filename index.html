@@ -523,24 +523,28 @@ path, rect, g, ellipse {
 #facadeShade {
     stroke-width: 0;
     --smallD: 'M 180 0 H 340 V 109 L252 100 L242 110 L217 70 L187 120 Z';
+    --upperD: 'M 180 0 H 340 V 60  L252 65  L242 75  L217 35 L198 75  Z';
+    --slammD: 'M 180 0 H 340 V 109 L257 100 L240 110 L217 70 L187 120 Z';
+    --bounce: 'M 180 0 H 340 V 96  L248 87  L242 97  L217 57 L187 107 Z';
+    --curD: var(--smallD);
     animation-duration: var(--anispeed);
     animation-timing-function: linear;
 }
 
-#facadeShade.go { animation-name: facShadeAni; }
+#facadeShade.go { animation-name: facadeShadeAni; }
 
-@keyframes facShadeAni {
+@keyframes facadeShadeAni {
     60%, 100% {
         d: path(var(--smallD));
         opacity: var(--shade-opacity);
     } 18%, 50% {
-        d: path('M 180 0 H 340 V 60 L252 65 L242 75 L217 35 L198 75Z');
+        d: path(var(--upperD));
         opacity: 0.0;
     } 61% {
-        d: path('M 180 0 H 340 V 109 L257 100 L240 110 L217 70 L187 120 Z');
+        d: path(var(--slammD));
         opacity: var(--shade-opacity);
     } 82% {
-        d: path('M 180 0 H 340 V 96 L248 87 L242 97 L217 57 L187 107Z');
+        d: path(var(--bounce));
         opacity: var(--shade-opacity);
     }
 }
@@ -549,9 +553,9 @@ path, rect, g, ellipse {
     stroke-width: 0;
     --height: 80;
     --smallD: 'M350 40 Q 370 115 400 190 H480V0 H 350 Z M340 123 V 80 H 310 L 276 133 L 294 155 Z ';
-    --smallBowD: 'M350 40 Q 385 120 410 190 H480V0 H 350 Z M340 123 V 80 H 310 L 276 133 L 294 155 Z ';
-    --largeBowD: 'M380 45 Q 430 143 430 250 H480V0 H 380 Z M374 118 V 80 H 310 L 276 133 L 294 165 Z ';
-    --largeD: 'M380 45 Q 390 120 420 210 H480V0 H 380 Z M374 118 V 80 H 310 L 276 133 L 294 165 Z ';
+    --smallBowD: 'M350 60 Q 400 120 400 215 H480V0 H 350 Z M340 123 V 80 H 310 L 276 133 L 294 155 Z ';
+    --largeBowD: 'M387 80 Q 430 163 420 212 H480V0 H 380 Z M374 118 V 80 H 310 L 276 133 L 294 165 Z ';
+    --largeD: 'M387 45 Q 397 120 420 210 H480V0 H 380 Z M374 118 V 80 H 310 L 276 133 L 294 165 Z ';
     --curD: var(--largeD);
     animation-duration: var(--anispeed);
     animation-timing-function: linear;
@@ -939,7 +943,6 @@ path, rect, g, ellipse {
      step="1"
     >
 </div>
-
 
 </div>
 </body>
