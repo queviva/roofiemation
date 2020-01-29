@@ -72,6 +72,7 @@ path, rect, g, ellipse {
 
 #leftSideShade {
     --smallD: 'M225 179 V150 H175 V187 Z';
+    opacity: calc( 0.7 * var(--shade-opacity));
 }
 
 #leftSideRoof {
@@ -521,7 +522,7 @@ path, rect, g, ellipse {
 
 #facadeShade {
     stroke-width: 0;
-    --smallD: 'M 180 0 H 340 V 135 L325 135 L295 105 L252 100 L242 110 L217 70 L187 120 Z';
+    --smallD: 'M 180 0 H 340 V 109 L252 100 L242 110 L217 70 L187 120 Z';
     animation-duration: var(--anispeed);
     animation-timing-function: linear;
 }
@@ -533,13 +534,13 @@ path, rect, g, ellipse {
         d: path(var(--smallD));
         opacity: var(--shade-opacity);
     } 18%, 50% {
-        d: path('M 180 0 H 340 V 135 L325 135 L295 70 L252 65 L242 75 L217 35 L198 75Z');
+        d: path('M 180 0 H 340 V 60 L252 65 L242 75 L217 35 L198 75Z');
         opacity: 0.0;
     } 61% {
-        d: path('M 180 0 H 340 V 135 L325 135 L295 105 L257 100 L240 110 L217 70 L187 120 Z');
+        d: path('M 180 0 H 340 V 109 L257 100 L240 110 L217 70 L187 120 Z');
         opacity: var(--shade-opacity);
     } 82% {
-        d: path('M 180 0 H 340 V 135 L325 135 L290 87 L248 87 L242 97 L217 57 L187 107Z');
+        d: path('M 180 0 H 340 V 96 L248 87 L242 97 L217 57 L187 107Z');
         opacity: var(--shade-opacity);
     }
 }
