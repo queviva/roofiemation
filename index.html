@@ -3,11 +3,208 @@
 <head><title>houzzz</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!--link id="luckiestFont" href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet"-->
-<link id="demoStyles" rel="stylesheet" type="text/css" href="demoStyles.css">
+<!--link id="demoStyles" rel="stylesheet" type="text/css" href="demoStyles.css"-->
+<style id="demoStyle">
+:root {
+    --main-color: #666;
+    --trans-speed: 0.3s;
+    --samp-var: #c30;
+    
+    --color: 200, 30%;
+    /*--color: 100, 30%;*/
+    --lightness: 80%;
+    
+    --shade-opacity: 0.5;
+    
+    --anispeed:         800ms;
+    
+    --midness:  calc(0.37 * var(--lightness));
+    --darkness: calc(0.18 * var(--lightness));
+}
+
+* {
+    box-sizing: border-box;
+    word-wrap: break-word;
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+    color: hsl(var(--color), var(--midness));
+    xxfont-size: 22px;
+    text-align: justify;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -epub-hyphens: auto;
+    hyphens: auto;
+    xxuser-select: none;
+}
+
+#holder {
+	position: relative;
+    margin: auto;
+    width: 100%;
+    max-width: 700px;
+    overflow: hidden;
+    xxxbackground: url('bagRot.jpg');
+    xxxbackground-size: cover;
+}
+
+.qa {
+    XXborder: 1px solid #000;
+}
+
+.qr {
+    XXborder: 1px solid #c30;
+}
+
+.qa, .qr {
+    transition: color linear var(--trans-speed);
+}
+
+.qa:hover, .qr:hover, a:hover, a:visited {
+    color: hsl(var(--color), var(--darkness));
+    transition: color linear var(--trans-speed);
+}
+
+.qa:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.qa > div {
+    float: left;
+    padding: 10px;
+    height: auto;
+}
+
+.qa > div:nth-child(1) {
+  width: 65%;
+}
+
+.qa > div:nth-child(2) {
+  width: 35%;
+  text-align: center;
+}
+
+#svgHolder {
+    text-align:center;
+    padding-top: 0px;
+    zoom: 1.4;
+    transition: all 300ms linear;
+}
+
+#svg0 {
+    position:relative;
+    width: 200px;
+    height: 320px;
+    overflow: visible;
+    xxxmixblend-mode: hard-light;
+    transition: width 300ms linear;
+}
+
+.rdiv {
+    color: hsl(var(--color), var(--midness));
+    font-family: 'luckiest guy';
+    width: 20%;
+    height: 60px;
+    font-size: 40px;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    xxxmix-blend-mode: hard-light;
+    transition: all 300ms linear;
+}
+
+.rdiv:hover {
+    color: hsl(var(--color), calc(1.2 * var(--lightness)));
+    background-color: hsl(var(--color), var(--midness));
+    transition: color 400ms linear;
+}
+
+#slideHolder {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+#slide0 {
+    --thumbH: 30px;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    display: inline-block;
+    margin: 0;
+    height: var(--thumbH);
+    width: 80%;
+    border-radius: calc(var(--thumbH) / 2);
+    background-color: hsl(var(--color), var(--midness));
+    xxxmix-blend-mode: hard-light;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: hsl(var(--color), var(--lightness));
+    opacity: 1.7;
+    height: var(--thumbH);
+    margin-bottom: 0px;
+    width: var(--thumbH);
+    border: 1px;
+    border-radius: calc(var(--thumbH) / 2);
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+/*possibly a portrait mobi-fone*/
+@media screen and (max-width:500px) {
+    
+	.qa > div:nth-child(1),
+	.qa > div:nth-child(2)
+	{
+    	width: 100%;
+    }
+    
+    #svgHolder {
+        padding-top: 80px;
+        zoom: 1.0;
+    }
+    
+    .rdiv {
+        font-size: 20px;
+    }
+    
+    #slide0 {
+        --thumbH: 60px;
+    }
+}
+
+/*possibly a mobile landscaper*/
+@media screen
+    and (orientation: landscape)
+    and (max-width: 760px)
+    {
+    
+    #svgHolder {
+        padding-top: 80px;
+        zoom: 1.0;
+    }
+    
+    #slide0 {
+        width: 50%;
+    }
+    
+}
+</style>
 
 <style id="roofieStyle">
 
-path, rect, g, ellipse {
+path, rect, g, circle, ellipse {
     fill: hsl(var(--color), var(--lightness));
     stroke: hsl(var(--color), calc(.7 * var(--lightness)));
     stroke-width: 5px;
@@ -165,7 +362,6 @@ path, rect, g, ellipse {
 }
 
 #roofGroupTop {
-    xxopacity: 0.5;
     transform-origin: 300px 150px;
 }
 
@@ -181,13 +377,9 @@ path, rect, g, ellipse {
     
     --smallBowD: 'M300 205 Q290 170 290 120 Q310 112 340 110 Q342 160 345 205 Z M345 205 Q342 160 340 110 Q350 70 370 35 Q377 80 390 120 Q393 155 380 208 Z';
     
-    --b-largeD: 'M 300 205 Q 300 190 290 120 Q 317.156 110.569 362.901 110 Q 365.616 160 366.469 206.431 Z M 366.469 206.431 Q 365.616 160 362.901 110 Q 371.469 62.8435 395.048 29.9905 Q 393.46 80 405.744 123.578 Q 399.313 160.735 395.744 208.716 Z';
-    
     --largeD: 'M300 205 Q300 190 290 120 Q320 110 372 110 Q375 160 375 207 Z M375 207 Q375 160 372 110 Q380 60 405 28 Q400 80 412 125 Q405 165 402 209 Z';
     
     --largeBowD: 'M300 205 Q290 160 290 120 Q320 110 372 110 Q375 160 375 207 Z M375 207 Q375 160 372 110 Q380 60 405 28 Q400 80 412 125 Q415 168 402 209 Z';
-    
-    --ex-largeD: 'M 300 205 Q 300 190 290 120 Q 321.072 109.786 375.431 110 Q 378.538 160 378.216 207.214 Z M 378.216 207.214 Q 378.538 160 375.431 110 Q 383.216 58.9279 408.752 27.2495 Q 402.466 80 414.359 125.536 Q 407.144 166.608 404.359 209.107 Z';
     
     --curD: var(--largeD);
     --curBowD: var(--largeBowD);
@@ -267,7 +459,7 @@ path, rect, g, ellipse {
 
 #tinyRoofShade {
     --lightness: 0%;
-    --smallD: 'M 308 92 L290.5 102 Q300 75 300 50 Z';
+    --smallD: 'M 310 93 L287 103 L302 50 Z';
 }
 
 #facadeRoofTop {
@@ -358,13 +550,6 @@ path, rect, g, ellipse {
     stroke-width: 2px;
 }
 
-#rightWindowGroupHolder {
-    transform-origin: 318px 160px;
-    animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.6);
-    xxanimation-duration: calc(var(--anispeed) * (3/7));
-    animation-duration: var(--anispeed);
-}
-
 .winSpin {
     --turns: -0.05;
     animation-name: spinner;
@@ -388,26 +573,29 @@ path, rect, g, ellipse {
     animation-timing-function: linear;
 }
 
-#rightWindowGroupHolder.one { animation-name: windowGroupAni1; }
-#rightWindowGroupHolder.two { animation-name: windowGroupAni2; }
-#rightWindowGroupHolder.tre { animation-name: windowGroupAni3; }
+#rightWindowGroupHolder {
+    transform-origin: 318px 160px;
+    animation-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.6);
+    animation-duration: var(--anispeed);
+}
 
-@keyframes windowGroupAni1 {
-    0%, 10% {}
-    42%, 100% {
-        transform: translate(-1px, 0px) scale(0.8, 1) rotate(1.5deg);
-    }
+#rightWindowGroupHolder.one {
+    animation-name: windowGroupAni;
+    --aniTrans: translateX(-1px) scale(0.8, 1) rotate(1.5deg);
 }
-@keyframes windowGroupAni2 {
-    0%, 10% {}
-    42%, 100% {
-        transform: translate(13px, 0px) scale(1.1, 1) rotate(1deg);
-    }
+#rightWindowGroupHolder.two {
+    animation-name: windowGroupAni;
+    --aniTrans: translateX(13px) scale(1.1, 1) rotate(1deg);
 }
-@keyframes windowGroupAni3 {
+#rightWindowGroupHolder.tre {
+    animation-name: windowGroupAni;
+    --aniTrans: translateX(0px) scale(1.05, 1) rotate(2deg);
+}
+
+@keyframes windowGroupAni {
     0%, 10% {}
     42%, 100% {
-        transform: translate(0px, 0px) scale(1.05, 1) rotate(2deg);
+        transform: var(--aniTrans);
     }
 }
 
@@ -472,20 +660,7 @@ path, rect, g, ellipse {
     }
 }
 
-#leftWindowSill {
-    --lightness: var(--darkness);
-    stroke-width: 2px;
-    --smallD: 'M308 190 l-1 -7 l19 -2 l8 0.5 l1 7 Z';
-    --splitD: 'M308 190 l-1 -7 l19 -2 l8 0.5 l0.2 7 Z';
-    --curD: var(--splitD);
-    --ctrans: translate(-12px, 0px) scale(0.8, 1.0);
-    transform: translate(-12px, 0px) scale(0.8, 1.0);
-    transform-origin: 317px 190px;
-    animation-delay: calc(var(--anispeed) * 0.13);
-    animation-duration: calc(var(--anispeed) * (250/700));
-}
-
-#rightWindowSill {
+.sill {
     --lightness: var(--darkness);
     stroke-width: 2px;
     --smallD: 'M308 190 l-1 -7 l19 -2 l8 0.5 l1 7 Z';
@@ -498,10 +673,14 @@ path, rect, g, ellipse {
     animation-duration: calc(var(--anispeed) * (250/700));
 }
 
-#leftWindowSill.one { animation-name: sillCenter; }
-#leftWindowSill.two { animation-name: sillSplit; }
-#rightWindowSill.one { animation-name: sillCenter; }
-#rightWindowSill.two { animation-name: sillSplit; }
+.sill.one { animation-name: sillCenter; }
+.sill.two { animation-name: sillSplit; }
+
+#leftWindowSill {
+    --splitD: 'M308 190 l-1 -7 l19 -2 l8 0.5 l0.2 7 Z';
+    --ctrans: translate(-12px, 0px) scale(0.8, 1.0);
+    transform: translate(-12px, 0px) scale(0.8, 1.0);
+}
 
 @keyframes sillCenter {
     20% {
@@ -512,7 +691,7 @@ path, rect, g, ellipse {
     }
 }
 @keyframes sillSplit {
-    20% {} 50% {
+    50% {
         transform: translate(0px, 0px);
         d: path(var(--smallD));
     } 100% {
@@ -546,8 +725,10 @@ path, rect, g, ellipse {
         opacity: 0.0;
     } 40% {
         transform: translateY(calc((-2px * var(--height)) - 10px));
+        opacity: 0.0;
     } 50% {
         transform: translateY(calc((-2px * var(--height)) - 20px));
+        opacity: 0.0;
     } 61% {
         d: path(var(--slammD));
         opacity: var(--shade-opacity);
@@ -570,53 +751,35 @@ path, rect, g, ellipse {
 }
 
 #rightSideShade.small {
-    animation-name: RShade_getSmall;
+    --aniD: var(--smallD);
+    --aniBowD: var(--smallBowD);
+    animation-name: RightShadeAni;
 }
 #rightSideShade.large {
-    animation-name: RShade_getLarge;
+    --aniD: var(--largeD);
+    --aniBowD: var(--largeBowD);
+    animation-name: RightShadeAni;
 }
 
-@keyframes RShade_getSmall {
+@keyframes RightShadeAni {
     60%, 100% {
+        d: path(var(--aniD));
         transform: translate(0px, 0px);
-        d: path(var(--smallD));
         opacity: var(--shade-opacity);
     } 10% {
-        transform: translate(0px, calc(-1px * var(--height)));
+        transform: translateY(calc(-1px * var(--height)));
         opacity: 0.0;
     } 40% {
-        d: path(var(--smallD));
+        d: path(var(--aniD));
         opacity: 0.0;
         transform: translateY(calc((-2px * var(--height)) - 10px));
     } 50% {
         transform: translateY(calc((-2px * var(--height)) - 20px));
         opacity: 0.0;
     } 64% {
-        d: path(var(--smallBowD));
+        d: path(var(--aniBowD));
     } 82% {
-        transform: translate(0px, -15px);
-        opacity: calc(0.8 * var(--shade-opacity));
-    }
-}
-
-@keyframes RShade_getLarge {
-    60%, 100% {
-        d: path(var(--largeD));
-        transform: translate(0px, 0px);
-        opacity: var(--shade-opacity);
-    } 10% {
-        transform: translate(0px, calc(-1px * var(--height)));
-        opacity: 0.0;
-    } 40% {
-        d: path(var(--largeD));
-        transform: translateY(calc((-2px * var(--height)) - 10px));
-    } 50% {
-        transform: translateY(calc((-2px * var(--height)) - 20px));
-        opacity: 0.0;
-    } 64% {
-        d: path(var(--largeBowD));
-    } 82% {
-        transform: translate(0px, -15px);
+        transform: translateY(-15px);
         opacity: calc(0.8 * var(--shade-opacity));
     }
 }
@@ -740,9 +903,10 @@ path, rect, g, ellipse {
 </head>
 <body>
 <div id="holder">
-<div id="svgHolder" class="qr">
+  <div id="svgHolder" class="qr">
 
-    <svg id="svg0" viewbox="190 -100 200 320" xmlns="http://www.w3.org/2000/svg">
+    <svg id="svg0" viewbox="190 -100 200 320">
+        
      <defs>
         <path id="leftSideWall" class="rat" />
         <path id="facadeFrontWall" class="rat roofie"
@@ -794,21 +958,20 @@ path, rect, g, ellipse {
       <g id="bubbles">
           <g transform="translate(310 0)">
             <g id="smoke0" class="smoke0 roofie" opacity="0"
-            data-watchers="transform opacity"
             data-vals="one one one one one"
             >
-              <ellipse class="kloud" cx="-30" cy="30" rx="15" ry="15" />
-              <ellipse class="kloud" cx="-20" cy="80" rx="10" ry="10" />
-              <ellipse class="kloud" cx="0" cy="20" rx="20" ry="20" />
-              <ellipse class="kloud" cx="0" cy="20" rx="30" ry="30" />
+              <circle class="kloud" cx="-30" cy="30" r="15" />
+              <circle class="kloud" cx="-30" cy="30" r="15" />
+              <circle class="kloud" cx="-20" cy="80" r="10" />
+              <circle class="kloud" cx="0" cy="20" r="20" />
+              <circle class="kloud" cx="0" cy="20" r="30" />
             </g>
             <g id="smoke1" class="smoke1 roofie" opacity="0"
-            data-watchers="transform opacity"
             data-vals="one one one one one"
             >
-              <ellipse class="kloud" cx="40" cy="30" rx="15" ry="15" />
-              <ellipse class="kloud" cx="25" cy="35" rx="20" ry="20" />
-              <ellipse class="kloud" cx="0" cy="20" rx="30" ry="30" />
+              <circle class="kloud" cx="40" cy="30" r="15" />
+              <circle class="kloud" cx="25" cy="35" r="20" />
+              <circle class="kloud" cx="0" cy="20" r="30" />
             </g>
           </g>
           
@@ -845,7 +1008,6 @@ path, rect, g, ellipse {
           <g mask="url(#facadeShadeMask)">
             <path id="facadeShade"
              class="rat shade roofie"
-             data-watchers="d opacity"
              data-vals="go go go go go"
             />
           </g>
@@ -855,7 +1017,7 @@ path, rect, g, ellipse {
           <use href="#rightSideWall" />
           
           <g id="rightWindowGroupHolder"
-           class="rat roofie"
+           class="rat roofie RWG"
            data-watchers="transform"
            data-vals="one two one two two"
           >
@@ -872,12 +1034,12 @@ path, rect, g, ellipse {
               />
             </g>
             <path id="leftWindowSill"
-             class="rat accent roofie"
+             class="rat accent roofie sill"
              data-watchers="d transform"
              data-vals="one two one one two"
             />
             <path id="rightWindowSill"
-             class="rat accent roofie"
+             class="rat accent roofie sill"
              data-watchers="d transform"
              data-vals="one two one one two"
             />
@@ -886,10 +1048,10 @@ path, rect, g, ellipse {
           <g mask="url(#rightShadeMask)">
             <path id="rightSideShade"
              class="rat shade roofie"
-             data-watchers="d opacity"
              data-vals="small large small large large"
             />
           </g>
+      
       </g>
       
       <g id="roofGroupTop"
@@ -907,6 +1069,7 @@ path, rect, g, ellipse {
       
       <path id="ground" class="rat" />
       
+      <g>
       <!--g>
       <ellipse id="spot" class="Xroofie"
        data-watchers="fill transform"
@@ -950,14 +1113,15 @@ path, rect, g, ellipse {
           }
       </style>
       </g-->
+      </g>
  
      </g>
             
     </svg>
     
-</div>
+  </div>
 
-<div id="slideHolder">
+  <div id="slideHolder">
     <input
      id="slide0"
      type="range"
@@ -966,7 +1130,7 @@ path, rect, g, ellipse {
      value="2"
      step="1"
     >
-</div>
+  </div>
 
 </div>
 </body>
@@ -1031,6 +1195,12 @@ function RoofieMate (customeClasseName) {
             
             // paz, 'erms
             this.paz = () => obj.style.animationPlayState = obj.style.animationPlayState === 'paused' ? 'running' : 'paused';
+            
+            // end hostilities
+            this.stop = () => obj.dispatchEvent(new Event('animationend'));
+            
+            // return the current conditions
+            this.playState = () => obj.style.animationPlayState;
         
         // pass each roofie-classed element in to the constructor
         })(roof)
@@ -1054,26 +1224,51 @@ window.addEventListener('load', e => {
     // hashtable lookup for overwriting the stylesheet
     /*
     const cssHash = {};
-    for (let i in (ssr = document.getElementById('spotStyle').sheet.rules)){
+    for (let i in (ssr = document.getElementById('demoStyle').sheet.rules)){
         cssHash[ssr[i].selectorText] = ssr[i];
     }
     */
     
-    const randBetween = (bot, top) =>  ~~(Math.random() * (top - bot) ) + bot;
+    const
+    clam = (...v) => v.sort((a, b) => a - b)[1],
+    randBetween = (bot, top) => ~~(Math.random() * (top - bot) ) + bot,
+    RFM = new RoofieMate(),//'.roofie'),
+    handler = num => {
+        cur = num;
+        roofies.forEach(r => RFM[r.id].mate(r.vals[num]));
+    },
+    storePrefs = () => localStorage.setItem(defPrefs.appName, JSON.stringify(prefs)),
     
-    const RFM = new RoofieMate();//'.roofie');
+    defPrefs = {
+        appName: 'roofiemation',
+        hue: 200,
+        sat: 30,
+        lit: 80
+    };
+        
+    
 
-    let cur = 0;
 
-    let roofies = document.querySelectorAll('.roofie');
+
+    let
+    cur = 0, curHue, curSat, curLit,
+    roofies = document.querySelectorAll('.roofie'),
+    lips = document.querySelectorAll('.kloud'),
+    
+    prefs = localStorage[defPrefs.appName] ?
+        JSON.parse(localStorage[defPrefs.appName])
+        :
+        defPrefs;
+        
+    curHue = prefs.hue;
+    curSat = prefs.sat;
+    curLit = prefs.lit;
     
     roofies.forEach(r => r.vals = (r.dataset.vals || '').trim().split(/\s+/));
     
-    let lips = document.querySelectorAll('.smoke0 > ellipse, .smoke1 > ellipse');
+    lips.forEach(lip => lip.orig = parseInt(lip.getAttribute('r')));
 
-    lips.forEach(lip => lip.orig = parseInt(lip.getAttribute('rx')));
-
-    smoke0.addEventListener('animationend', e => lips.forEach(lip => lip.style.rx = lip.style.ry = lip.orig + (Math.random() * 15 - 5)));
+    smoke0.addEventListener('animationend', e => lips.forEach(lip => lip.style.r = lip.orig + (Math.random() * 15 - 5)));
 
     roofGroupTop.addEventListener('animationend', e => {
     
@@ -1085,14 +1280,6 @@ window.addEventListener('load', e => {
         
     });
     
-    const handler = num => {
-    
-        cur = num;
-    
-        roofies.forEach(r => RFM[r.id].mate(r.vals[num]));
-    
-    };
-    
     window.addEventListener('keydown', e => {
         
         // pause to pee
@@ -1100,73 +1287,81 @@ window.addEventListener('load', e => {
             
             roofies.forEach(r =>  RFM[r.id].paz());
             
-            //pazDiv.innerHTML = pazDiv.innerHTML === '' ? 'paz' : '';
-            
         }
         
         // tender of the space bar
         if (e.keyCode === 32) {
             
-            // then rest the animation
-            document.documentElement.style.setProperty('--anispeed', e.ctrlKey ? '5000ms' : '800ms');
-            
-            //cssHash['#spot.one'].style.setProperty('animation-duration', e.ctrlKey ? '9000ms' : '800ms');
-            /*
-            '#spot.one #spot.two #spot.tre'.split(' ').forEach(rul => {
-                console.log('changing ' + rul)
-                cssHash[rul].style.animationDuration =
-                e.ctrlKey ? '9000ms' : '800ms';
-            });
-            */
-            
-            //handler((cur = (cur + 1) % butts.length));
-            //slide0.value = ((cur = (cur + 1) % 5));
-            //slide0.dispatchEvent(new Event('input'));
+            // start a promise
+            new Promise((resolve, reject) => {
+                
+                // paz all roofies
+                roofies.forEach(r =>  RFM[r.id].stop());
+                
+                // reset the speed
+                document.documentElement.style.setProperty('--anispeed', e.ctrlKey ? '5000ms' : '800ms');
+                
+                // call as soon as possible
+                setTimeout(() => resolve(), 0);
+               
+            // then ...
+            }).then(() => handler(cur));
         
         }
         
     });
     
     // colored entrance
-    let clam = (...v) => v.sort((a, b) => a - b)[1],
-    
-        curHue = parseInt(
-            getComputedStyle(document.documentElement)
-            .getPropertyValue('--color').split(', ')[0]
-        ),
-        curSat = 30,
-        curLit = parseInt(
-            getComputedStyle(document.documentElement)
-            .getPropertyValue('--lightness').split(', ')[0]
-        );
+    const coloredEntrance = (e, dx, dy, CTRL) => {
         
+        e.stopPropagation();
         
-    roofGroupTop.addEventListener('wheel', e => {
+        curHue = (((curHue + (dy / 50)) % 360) + 360) % 360;
         
-        curHue = (((curHue + (e.wheelDeltaY / 50)) % 360) + 360) % 360;
-        
-        if(e.ctrlKey){
-            curSat = clam(curSat - e.wheelDeltaX/100, 100, 0);
-        } else {
-            curLit = clam(curLit - e.wheelDeltaX/100, 100, 0);
-        }
+        (CTRL) ?
+            curSat = clam(curSat - dx/100, 100, 0)
+        :
+            curLit = clam(curLit - dx/100, 100, 0)
+        ;
         document.documentElement.style.setProperty('--color', curHue + ', ' + curSat +'%');
         document.documentElement.style.setProperty('--lightness', curLit + '%');
-        e.stopPropagation();
-        e.preventDefault();
         
-    }, {passive:false});
-    
-    slide0.addEventListener('input', e => {
-        handler(slide0.value);
+    };
+    coloredEntrance(new Event('load'),0,0,false);
+
+    roofGroupTop.addEventListener('wheel', e => {
+        coloredEntrance(e, e.wheelDeltaX, e.wheelDeltaY, e.ctrlKey);
+        e.preventDefault();
     });
     
-    roofGroupTop.addEventListener('dblclick', e => {
-        roofies.forEach(r =>  RFM[r.id].paz());
-    });
+    let origTouch = [0, 0];
+    
+    roofGroupTop.addEventListener('touchstart', e =>
+        origTouch = [e.touches[0].pageX, e.touches[0].pageY]
+    );
+    
+    roofGroupTop.addEventListener('touchmove', e =>
+        coloredEntrance(e, origTouch[0] - e.touches[0].pageX, origTouch[1] - e.touches[0].pageY, e.touches[1])
+    );
+    
+    slide0.addEventListener('input', e =>
+        handler(slide0.value)
+    );
+    
+    roofGroupTop.addEventListener('dblclick', e =>
+        roofies.forEach(r =>  RFM[r.id].paz())
+    );
     
     // run on load
     handler(slide0.value);
+    
+    // save state when the page closes
+    window.addEventListener('beforeunload', e => {
+        prefs.hue = curHue;
+        prefs.sat = curSat;
+        prefs.lit = curLit;
+        storePrefs();
+    });
     
     
     
