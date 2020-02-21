@@ -153,7 +153,8 @@ input[type=range]::-webkit-slider-thumb {
     height: var(--thumbH);
     margin-bottom: 0px;
     width: var(--thumbH);
-    border: 1px;
+    border: calc(0.1 * var(--thumbH)) solid;
+    border-color: hsl(var(--color), calc(.7 * var(--lightness)));
     border-radius: calc(var(--thumbH) / 2);
 }
 
@@ -1293,7 +1294,7 @@ window.addEventListener('load', e => {
         if (e.keyCode === 32) {
             
             // start a promise
-            new Promise((resolve, reject) => {
+            new Promise((res, rej) => {
                 
                 // paz all roofies
                 roofies.forEach(r =>  RFM[r.id].stop());
@@ -1302,10 +1303,10 @@ window.addEventListener('load', e => {
                 document.documentElement.style.setProperty('--anispeed', e.ctrlKey ? '5000ms' : '800ms');
                 
                 // call as soon as possible
-                setTimeout(() => resolve(), 0);
+		res();
                
             // then ...
-            }).then(() => handler(cur));
+	    }).then(() => handler(cur)).catch(() => console.log('oops'));
         
         }
         
@@ -1327,7 +1328,7 @@ window.addEventListener('load', e => {
         document.documentElement.style.setProperty('--lightness', curLit + '%');
         
     };
-    coloredEntrance(new Event('load'),0,0,false);
+    coloredEntrance({stopPropagation: () => true },0,0,false);
 
     roofGroupTop.addEventListener('wheel', e => {
         coloredEntrance(e, e.wheelDeltaX, e.wheelDeltaY, e.ctrlKey);
