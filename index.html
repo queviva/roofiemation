@@ -184,11 +184,7 @@ input[type=range]:focus {
 }
 
 /*possibly a mobile landscaper*/
-@media screen
-    and (orientation: landscape)
-    and (max-width: 760px)
-    {
-    
+@media screen and (orientation: landscape) and (max-width: 760px) {
     #svgHolder {
         padding-top: 80px;
         zoom: 1.0;
@@ -198,7 +194,9 @@ input[type=range]:focus {
         width: 50%;
     }
     
+    
 }
+
 </style>
 
 <style id="roofieStyle">
@@ -550,7 +548,8 @@ path, rect, g, circle, ellipse {
 }
 
 .winSpin {
-    --turns: -0.05;
+    --xxturns: -0.05;
+    --turns: -2.3;
     animation-name: spinner;
     animation-duration: calc(var(--anispeed) * 0.3);
     animation-delay: calc(var(--anispeed) * 0.61);
@@ -561,6 +560,12 @@ path, rect, g, circle, ellipse {
 .fullspin2 { --turns: -1; animation-name: spinner; }
 
 @keyframes spinner {
+    10% {transform: rotate(0turn);}
+    42%, 100% { transform: rotate(calc(1turn * var(--turns)));
+    }
+}
+
+@keyframes old-spinner {
     0%, 10% {}
     42%, 100% { transform: rotate(calc(1turn * var(--turns)));
         
@@ -1022,7 +1027,8 @@ path, rect, g, circle, ellipse {
           >
             <g id="rightWindowGroup"
              class="rat roofie"
-             data-watchers="--none"
+             xxdata-watchers="--none"
+             data-watchers="transform"
              data-vals="fullspin0 fullspin1 fullspin1 fullspin1 fullspin0"
             >
               <path
@@ -1199,7 +1205,7 @@ function RoofieMate (customeClasseName) {
             this.stop = () => obj.dispatchEvent(new Event('animationend'));
             
             // return the current conditions
-            this.playState = () => obj.style.animationPlayState;
+            this.playState = () => window.getComputedStyle(obj).animationPlayState;
         
         // pass each roofie-classed element in to the constructor
         })(roof)
@@ -1280,6 +1286,11 @@ window.addEventListener('load', e => {
     });
     
     window.addEventListener('keydown', e => {
+        
+        // ignore held-down key
+        if (e.repeat) {
+            return;
+        }
         
         // pause to pee
         if (e.keyCode === 80) {
