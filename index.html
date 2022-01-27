@@ -2,8 +2,12 @@
 <html lang="en">
 <head><title>houzzz</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link id="luckiestFont" href="https://fonts.googleapis.com/css?family=Luckiest+Guy" rel="stylesheet">
 <style id="demoStyles">
+
+@font-face {
+    font-family : luckiest guy;
+    src : url(luckiest.ttf);
+}
 
 :root {
     --main-color: #666;
@@ -950,7 +954,8 @@ path, rect, g, circle, ellipse {
 <body>
 <div class="holder">
     
-  <div id="svgHolder" class="qr">
+    <div demo >
+    <div id="svgHolder" class="qr">
 
     <svg id="svg0" viewbox="190 -100 200 320">
         
@@ -1116,71 +1121,27 @@ path, rect, g, circle, ellipse {
       </g>
       
       <path id="ground" class="rat" />
-      
-      <g>
-      <!--g>
-      <ellipse id="spot" class="Xroofie"
-       data-watchers="fill transform"
-       data-vals="one two one two tre"
-       cx="300" cy="200" rx="10" ry="10"
-      />
-      <style id="spotStyle">
-          #spot {
-              --quick: 800ms;
-              --slow: 5000ms;
-              xtransform-origin: 300px 200px;
-              fill: #0f0;
-          }
-        
-          #spot.one { --Xfill: #c30; animation-name: spotAni;
-            animation-duration: var(--slow);
-              
-          }
-          #spot.two { --Xfill: #ea0; animation-name: spotAni;
-            animation-duration: var(--quick);
-              
-          }
-          #spot.tre { --Xfill: #30c; animation-name: spotAni;
-            animation-duration: 900ms;
-          }
-          
-          @keyframes spotAni {
-              0% {}
-              50% { transform: scale(5, 5); }
-              100% { fill: var(--Xfill); transform: scale(1, 1); }
-          }
-          @keyframes spotAni2 {
-              0% {}
-              50% { transform: scale(5, 5); }
-              100% { fill: var(--Xfill); transform: scale(1, 1); }
-          }
-          @keyframes spotAni3 {
-              0% {}
-              50% { transform: scale(5, 5); }
-              100% { fill: var(--Xfill); transform: scale(1, 1); }
-          }
-      </style>
-      </g-->
-      </g>
- 
+
      </g>
             
     </svg>
     
-  </div>
+    </div>
 
-  <div id="slideHolder" class="qr">
-    <input
-     id="slide0"
-     type="range"
-     min="0"
-     max="4"
-     value="2"
-     step="1"
-    >
-  </div>
+    <div id="slideHolder" class="qr">
+        <input
+         id="slide0"
+         type="range"
+         min="0"
+         max="4"
+         value="2"
+         step="1"
+        >
+    </div>
 
-    <div class="qr">
+    </div>
+    
+    <div intro class="qr">
         
         <b><a href="roofiemation.js">roofiemation.js</a></b>
         allows elements to animate between
@@ -1188,21 +1149,16 @@ path, rect, g, circle, ellipse {
         making css animations effectively function like
         <i>transitions</i>
         <br><br>
-        click on different positions in the slider,
-        or drag the thumb around quickly,
-        and you will see that the it doesn't matter
-        what condition the animation is currently in,
-        it can always animate to a different state
-        <br><br>
-        hit <b>ctrl+space</b> or
+        
+        [hit <b>ctrl+space</b> or
         <i onclick="
             window.dispatchEvent(new KeyboardEvent(
                 'keydown',
                 {'keyCode' : 32, 'ctrlKey' : true}
             ));
         ">click here</i>
-        to slow down the animation - you might be able
-        to see things more clearly;
+        to slow down the animation;
+        
         hit <b>space</b> or
         <i onclick="
             window.dispatchEvent(new KeyboardEvent(
@@ -1210,14 +1166,260 @@ path, rect, g, circle, ellipse {
                 {'keyCode' : 32, 'ctrlKey' : false}
             ));
         ">click here</i> to reset the animation
-        to normal speed [you can also scroll around
-        on the roof if you want to change the color]
+        to normal speed;
+        
+        you can also scroll around
+        on the roof to change the color,
+        or hit <b onclick="
+            window.dispatchEvent(new KeyboardEvent(
+                'keydown',
+                {'keyCode' : 80}
+            ));
+        "
+        >p</b> to toggle pausing]
         
     </div>
     
-    <br><br><hr><div class="qr signature">~queviva</div>
+    <hr>
+    
+    <div prescript class="qr">
+        include the script, along with any options in
+        a well-formated JSON <i>data-param</i>,
+        then indicate which elements
+        you want to make into roofies by giving
+        them a <i>data-roofie</i> parameter;
+        animate by calling <i>roofie.mate()</i>
+        and passing in the name of a <i>class</i>
+        that has the keyframe <i>animation-name</i>
+        you want:
+        <br><br>
+        
+        <pre>
+&lt;script src="roofiemation.js"
+ data-roofie='{
+    "selector" : "roofie",
+    "watchers" : "transform opacity d"
+ }'&gt;&lt;/script&gt;
+ 
+&lt;div id="sample" data-roofie&gt;&lt;/div&gt;
+
+&lt;style&gt;
+
+    @keyframes sampleAni {
+        0% {}
+        50% { ... }
+        100% { ... }
+    }
+    
+    aniClass {
+        animation-name: sampleAni;
+    }
+
+&lt;/style&gt;
+
+&lt;script&gt;
+
+    // call any of the roofie methods //
+    sample.roofie.mate('aniClass');
+    sample.roofie.paz();
+    sample.roofie.stop();
+    
+&lt;/script&gt;
+        </pre>
+    </div>
+    
+    <div defaults class="qr">
+        
+        what do each of these options mean?
+        <br>
+        <ul>
+            <li><b>selector</b>: the <i>string</i> that you
+            want to use as the <i>data-param</i> to label
+            which elements should be selected; by default,
+            roofiemation.js will select all elements with
+            a <i>data-roofie</i> parameter; this is also
+            the name of the object that will get added
+            to any roofies - for example, if you change
+            the <i>selector</i> to "animonster", then
+            you would use <i>obj.animonster.paz()</i>
+            to pause the roofiemation, and label all the
+            roofies with <i>data-animonster</i> parameters
+            </li>
+            <br>
+            
+            <li><b>watchers</b>: this is a <i>coma separated</i>
+            list of all the attributes that you would like
+            the roofiemation to remember the state of;
+            you should list all of the style attributes that
+            get <i>changed</i> during the animation;
+            by default, roofiemation.js will preserve the
+            memory of the <i>transform, opacity</i> and
+            <i>svg paths</i>
+            [<i>... though that'll probably change, those
+            are just the most commonly used in these demos</i>]
+            </li>
+            <br>
+            
+            <li><b>@keyframes</b>: the <i>keyframe</i>
+            animations you create should have, obviously,
+            <i>no value</i> for 0%; this way, roofiemation
+            is able to animate from any current
+            condition of a roofie element
+            </li>
+            <br>
+            
+            <li><b>animationClass</b>: the roofies will
+            animate when they are given a <i>class</i>
+            that contains an <i>animation-name</i>
+            </li>
+            <br>
+            
+            <li><b>roofie.mate(<i>string</i>)</b>:
+            is the roofie method that triggers an animation;
+            it takes a <i>string</i> which is the name of
+            a class that contains an animation
+            </li>
+            <br>
+            
+            <li><b>roofie.paz()</b>: this will <i>pause</i>
+            any roofiemation
+            </li>
+            <br>
+            
+            <li><b>roofie.stop()</b>: this will force a
+            roofiemation to <i>stop</i>
+            </li>
+        </ul>
+    </div>
+    
+    <hr>
+    
+    <div class="qr">
+        this terrible example cannot yet be distinguished from
+        a simple transition, though it <i>is</i> actually
+        animations ...
+    </div>
+     
+    <div sampArea class="qa">
+        
+        <div class="qr">
+          <div class="qr" style="
+            padding:0;
+            background-color:var(--main-color);
+            height:200px;
+        ">
+        <svg
+         viewbox="-100,-200,200,400"
+         style="
+            width: 100%;
+            height: 200px;
+            background-color:var(--main-color);
+            overflow:visible;
+        "
+        >
+        <path id="spot"
+         data-roofie='{
+            "watchers" : "fill,transform,d"
+         }'
+        />
+        
+      <style id="spotStyle">
+          #spot {
+              fill: #909;
+              stroke: #000;
+              --quick: 3800ms;
+              --slow: 5000ms;
+              --rot: 0deg;
+              --scal: 5, 5;
+              --curPath: 'M50 50h-100v-100h100Z';
+              d: path(var(--curPath));
+          }
+          #spot.one { --Xfill: #909; animation-name: spotAni;
+            animation-duration: var(--slow);
+            --rot: 45deg;
+            --scal: 4, 4;
+              
+          }
+          #spot.two { --Xfill: #ea0; animation-name: spotAni;
+            animation-duration: var(--quick);
+            --rot: 180deg;
+              
+          }
+          #spot.tre { --Xfill: #c30; animation-name: spotAni;
+            animation-duration: var(--slow);
+            --rot: 30deg;
+            --scal: 5.5, 3.5;
+          }
+          
+          @keyframes spotAni {
+              0% {}
+              50% { transform: scale(var(--scal)) rotate(var(--rot)); }
+              100% { fill: var(--Xfill); transform: scale(1, 1) rotate(360deg); }
+          }
+      </style>
+ 
+        </svg>
+        
+          </div>
+        </div>
+        
+        <div class="qr" id="buttHolder">
+            <div class="sampButt" style="background-color:#909">0</div>
+            <div class="sampButt" style="background-color:#ea0">1</div>
+            <div class="sampButt" style="background-color:#c30">2</div>
+        </div>
+          
+        <style id="sampStyle">
+            #sampDiv {
+                
+            }
+            #buttHolder {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                height: 220px;
+            }
+            .sampButt {
+                margin: 0px;
+                height: 50px;
+                width: 100%;
+                color: rgba(255,255,255,0.6);
+                -webkit-text-stroke: 2px rgba(80,80,80,0.25);
+                font-family: 'luckiest guy';
+                font-size: 45px;
+                line-height: 65px;
+                background-color:#c00;
+                text-align: center;
+                user-select: none;
+            }
+            @media screen and (max-width:500px) {
+                #buttHolder {
+                    flex-direction: row;
+                    height:60px;
+                }
+                .sampButt {
+                    width: 30%;
+                }
+            }
+        </style>
+    
+        <script>
+            document.querySelectorAll('.sampButt').forEach((s, i) => {
+                s.addEventListener('click', () => {
+                    spot.roofie.mate(
+                        'one two tre'.split(' ')[i]
+                    );
+                });
+            });
+        </script>
+    </div>
+ 
+    <hr>
+    <br><div class="qr signature">~queviva</div>
 </div>
 </body>
+
+<script src="roofiemation.js"></script>
 
 <script id="roofie-mate">
 
@@ -1374,6 +1576,9 @@ window.addEventListener('load', e => {
         
         // tender of the space bar
         if (e.keyCode === 32) {
+            
+            e.preventDefault();
+            e.stopPropagation();
             
             // start a promise
             new Promise((res, rej) => {
