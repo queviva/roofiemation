@@ -1294,116 +1294,132 @@ path, rect, g, circle, ellipse {
     
     <hr>
     
-    <div class="qr">
-        this terrible example cannot yet be distinguished from
-        a simple transition, though it <i>is</i> actually
-        animations ...
+    <div sampIntro class="qr">
+        from this example, hopefully you can see that,
+        <i>no matter what</i> the current position or
+        shape of the object, it will <i>always</i>
+        animate to the values of whatever number you click
     </div>
-     
+
     <div sampArea class="qa">
-        
-        <div class="qr">
-          <div class="qr" style="
-            padding:0;
-            background-color:var(--main-color);
-            height:200px;
-        ">
-        <svg
-         viewbox="-100,-200,200,400"
-         style="
-            width: 100%;
-            height: 200px;
-            background-color:var(--main-color);
-            overflow:visible;
-        "
-        >
-        <path id="spot"
-         data-roofie='{
-            "watchers" : "fill,transform,d"
-         }'
-        />
-        
-      <style id="spotStyle">
-          #spot {
-              fill: #909;
-              stroke: #000;
-              --quick: 3800ms;
-              --slow: 5000ms;
-              --rot: 0deg;
-              --scal: 5, 5;
-              --curPath: 'M50 50h-100v-100h100Z';
-              d: path(var(--curPath));
-          }
-          #spot.one { --Xfill: #909; animation-name: spotAni;
-            animation-duration: var(--slow);
-            --rot: 45deg;
-            --scal: 4, 4;
-              
-          }
-          #spot.two { --Xfill: #ea0; animation-name: spotAni;
-            animation-duration: var(--quick);
-            --rot: 180deg;
-              
-          }
-          #spot.tre { --Xfill: #c30; animation-name: spotAni;
-            animation-duration: var(--slow);
-            --rot: 30deg;
-            --scal: 5.5, 3.5;
-          }
-          
-          @keyframes spotAni {
-              0% {}
-              50% { transform: scale(var(--scal)) rotate(var(--rot)); }
-              100% { fill: var(--Xfill); transform: scale(1, 1) rotate(360deg); }
-          }
-      </style>
- 
-        </svg>
-        
-          </div>
+
+        <div sampSVG class="qr">
+            <svg viewbox="-100,-200,200,400" style="
+                width: 100%;
+                height: 200px;
+                background-color:var(--main-color);
+                overflow:visible;
+            ">
+                <path id="spot" stroke-miterlimit="300"
+                 data-roofie='{
+                    "watchers" : "fill,transform,d"
+                 }'
+                />
+            </svg>
         </div>
-        
+
         <div class="qr" id="buttHolder">
             <div class="sampButt" style="background-color:#909">0</div>
             <div class="sampButt" style="background-color:#ea0">1</div>
             <div class="sampButt" style="background-color:#c30">2</div>
         </div>
-          
+
         <style id="sampStyle">
-            #sampDiv {
+            #spot {
                 
+                --pos: 0% 0%;
+                --rot: 0deg;
+                --scal: 10, 10;
+                
+                --hex : 'M-17.3 -10,L-17.3 10L0 20, L 17.3 10L17.3 -10L0 -20Z';
+                --tri : 'M-4.33 -2.5,L-17.3 10L0 5, L 17.3 10L4.33 -2.5L0 -20Z';
+                --sqr : 'M-20 -20L-20 20L-20 20L20 20L20 -20L20-20Z';
+                
+                --curPath: var(--sqr);
+                
+                fill: #909;
+                stroke: #000;
+                d: path(var(--curPath));
+                transform: scale(3);
+                animation-duration: 2000ms;
             }
+            
+            #spot.one {
+                animation-name: spotAni;
+                --Xfill: #909;
+                --rot: 45deg;
+                --scal: 10, 10;
+                --pos: -85%, 0%;
+                --path: var(--hex);
+            }
+            
+            #spot.two {
+                animation-name: spotAni;
+                
+                --Xfill: #ea0;
+                --pos: 0%, 20px;
+                --rot: 180deg;
+                --scal: 12, 12;
+                --path: var(--tri);
+            }
+            
+            #spot.tre {
+                animation-name: spotAni;
+                --Xfill: #c30;
+                --pos: 85%, 0%;
+                --rot: 30deg;
+                --scal: 7.5, 7.5;
+                --path: var(--sqr);
+            }
+            
+            @keyframes spotAni {
+                0% {
+                    animation-timing-function: linear;
+                }
+                50% {
+                    transform: scale(var(--scal)) rotate(var(--rot));
+                animation-timing-function: cubic-bezier(0.3, -1.6, 0.6, 1.6);
+                }
+                100% {
+                    fill: var(--Xfill);
+                    transform: translate(var(--pos)) scale(8, 8) rotate(360deg);
+                    d: path(var(--path));
+                }
+            }
+            
             #buttHolder {
                 display: flex;
                 flex-direction: column;
                 justify-content: space-between;
                 height: 220px;
             }
+            
             .sampButt {
                 margin: 0px;
                 height: 50px;
                 width: 100%;
-                color: rgba(255,255,255,0.6);
-                -webkit-text-stroke: 2px rgba(80,80,80,0.25);
+                color: rgba(255, 255, 255, 0.6);
+                -webkit-text-stroke: 2px rgba(80, 80, 80, 0.25);
                 font-family: 'luckiest guy';
                 font-size: 45px;
                 line-height: 65px;
-                background-color:#c00;
+                background-color: #c00;
                 text-align: center;
                 user-select: none;
             }
+            
             @media screen and (max-width:500px) {
                 #buttHolder {
                     flex-direction: row;
-                    height:60px;
+                    height: 60px;
                 }
                 .sampButt {
                     width: 30%;
                 }
             }
         </style>
-    
-        <script>
+
+        <script id="sampScript">
             document.querySelectorAll('.sampButt').forEach((s, i) => {
                 s.addEventListener('click', () => {
                     spot.roofie.mate(
@@ -1412,9 +1428,11 @@ path, rect, g, circle, ellipse {
                 });
             });
         </script>
+        
     </div>
- 
+    
     <hr>
+    
     <br><div class="qr signature">~queviva</div>
 </div>
 </body>
