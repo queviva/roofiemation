@@ -17,10 +17,12 @@
     --faded-txt: rgba(255, 255, 255, 0.5);
     --trans-speed: 0.3s;
     
-    --color: 20, 60%;
-    --lightness: 80%;
-    --midness:  calc(0.37 * var(--lightness));
-    --darkness: calc(0.18 * var(--lightness));
+    --nose-H: 10;
+    --nose-S: 60%;
+    --nose-L: 80%;
+    
+    --midness:  calc(0.37 * var(--nose-L));
+    --darkness: calc(0.18 * var(--nose-L));
     --shade-opacity: 0.4;
     --anispeed:         800ms;
 }
@@ -139,19 +141,18 @@ input[type=range] {
     height: var(--thumbH);
     width: 80%;
     border-radius: calc(var(--thumbH) / 2);
-    background-color: hsl(var(--color), var(--midness));
-    xxxmix-blend-mode: hard-light;
+    background-color: hsl(var(--nose-H), var(--nose-S), var(--midness));
 }
 
 input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
-    background-color: hsl(var(--color), var(--lightness));
+    background-color: hsl(var(--nose-H), var(--nose-S), var(--nose-L));
     opacity: 1.7;
     height: var(--thumbH);
     margin-bottom: 0px;
     width: var(--thumbH);
     border: calc(0.1 * var(--thumbH)) solid;
-    border-color: hsl(var(--color), calc(.7 * var(--lightness)));
+    border-color: hsl(var(--nose-H), var(--nose-S), calc(.7 * var(--nose-L)));
     border-radius: calc(var(--thumbH) / 2);
 }
 
@@ -249,8 +250,8 @@ input[type=range]:focus {
 <style id="roofieStyle">
 
 path, rect, g, circle, ellipse {
-    fill: hsl(var(--color), var(--lightness));
-    stroke: hsl(var(--color), calc(.7 * var(--lightness)));
+    fill: hsl(var(--nose-H), var(--nose-S), var(--nose-L));
+    stroke: hsl(var(--nose-H), var(--nose-S), calc(.7 * var(--nose-L)));
     stroke-width: 5px;
     vector-effect: non-scaling-stroke;
     transition: stroke-width 1s linear;
@@ -266,22 +267,22 @@ path, rect, g, circle, ellipse {
 }
 
 .roofbot {
-    --lightness: var(--darkness);
+    --nose-L: var(--darkness);
 }
 
 .rooftop {
-    --lightness: var(--midness);
+    --nose-L: var(--midness);
     opacity: 1.0;
 }
 
 .shade {
-    --lightness: calc(0.8 * var(--midness));
+    --nose-L: calc(0.8 * var(--midness));
     stroke-width: 0;
     opacity: var(--shade-opacity);
 }
 
 .accent {
-    --lightness: var(--midness);
+    --nose-L: var(--midness);
     stroke-width: 3;
 }
 
@@ -502,7 +503,7 @@ path, rect, g, circle, ellipse {
 }
 
 #tinyRoofShade {
-    --lightness: 0%;
+    --nose-L: 0%;
     --smallD: 'M 310 93 L287 103 L302 50 Z';
 }
 
@@ -532,7 +533,7 @@ path, rect, g, circle, ellipse {
 }
 
 #ground {
-    --lightness: calc(.6 * var(--midness));
+    --nose-L: calc(.6 * var(--midness));
     stroke: none;
     --smallD: 'M0 243 Q 260 173 520 223 h 60 v100 H 0 Z';
 }
@@ -590,7 +591,7 @@ path, rect, g, circle, ellipse {
 
 #doorStep {
     --smallD: 'M220 207 l-1 -6 l25 -3 l8 0.5 l1 9 Z';
-    --lightness: var(--darkness);
+    --nose-L: var(--darkness);
     stroke-width: 2px;
 }
 
@@ -712,7 +713,7 @@ path, rect, g, circle, ellipse {
 }
 
 .sill {
-    --lightness: var(--darkness);
+    --nose-L: var(--darkness);
     stroke-width: 2px;
     --smallD: 'M308 190 l-1 -7 l19 -2 l8 0.5 l1 7 Z';
     --splitD: 'M308 190 l-0.4 -7 l21 -2 l7 0.5 l0 7 Z';
@@ -839,8 +840,9 @@ path, rect, g, circle, ellipse {
 <style id="sceneStyle">
 
 .kloud {
-    --color: 0, 0%;
-    --lightness: 60%;
+    --nose-H: 0;
+    --nose-S:, 0%;
+    --nose-L: 60%;
     stroke-width: 0;
 }
 
@@ -885,7 +887,7 @@ path, rect, g, circle, ellipse {
 }
 
 #dots0 {
-    --lightness: 40%;
+    --nose-L: 40%;
     fill: none;
     stroke-linecap: round;
     stroke-dasharray: 1 20;
@@ -954,7 +956,7 @@ path, rect, g, circle, ellipse {
 <body>
 <div class="holder">
     
-    <div demo >
+    <div demo data-nose>
     <div id="svgHolder" class="qr">
 
     <svg id="svg0" viewbox="190 -100 200 320">
@@ -1319,9 +1321,9 @@ path, rect, g, circle, ellipse {
         </div>
 
         <div class="qr" id="buttHolder">
-            <div class="sampButt" style="background-color:#909">0</div>
-            <div class="sampButt" style="background-color:#ea0">1</div>
-            <div class="sampButt" style="background-color:#c30">2</div>
+            <div data-nose class="sampButt" style="background-color:#909">0</div>
+            <div data-nose class="sampButt" style="background-color:#ea0">1</div>
+            <div data-nose class="sampButt" style="background-color:#c30">2</div>
         </div>
 
         <style id="sampStyle">
@@ -1335,18 +1337,16 @@ path, rect, g, circle, ellipse {
                 --tri : 'M-4.33 -2.5,L-17.3 10L0 5, L 17.3 10L4.33 -2.5L0 -20Z';
                 --sqr : 'M-20 -20L-20 20L-20 20L20 20L20 -20L20-20Z';
                 
-                --curPath: var(--sqr);
-                
                 fill: #909;
                 stroke: #000;
-                d: path(var(--curPath));
+                d: path(var(--sqr));
                 transform: scale(3);
                 animation-duration: 2000ms;
             }
             
             #spot.one {
                 animation-name: spotAni;
-                --Xfill: #909;
+                --fill-X: #909;
                 --rot: 45deg;
                 --scal: 10, 10;
                 --pos: -85%, 0%;
@@ -1356,7 +1356,7 @@ path, rect, g, circle, ellipse {
             #spot.two {
                 animation-name: spotAni;
                 
-                --Xfill: #ea0;
+                --fill-X: #ea0;
                 --pos: 0%, 20px;
                 --rot: 180deg;
                 --scal: 12, 12;
@@ -1365,7 +1365,7 @@ path, rect, g, circle, ellipse {
             
             #spot.tre {
                 animation-name: spotAni;
-                --Xfill: #c30;
+                --fill-X: #c30;
                 --pos: 85%, 0%;
                 --rot: 30deg;
                 --scal: 7.5, 7.5;
@@ -1378,12 +1378,14 @@ path, rect, g, circle, ellipse {
                 }
                 50% {
                     transform: scale(var(--scal)) rotate(var(--rot));
-                animation-timing-function: cubic-bezier(0.3, -1.6, 0.6, 1.6);
+                    animation-timing-function: cubic-bezier(
+                        0.3, -1.6, 0.6, 1.6
+                    );
                 }
                 100% {
-                    fill: var(--Xfill);
                     transform: translate(var(--pos)) scale(8, 8) rotate(360deg);
                     d: path(var(--path));
+                    fill:var(--fill-X);
                 }
             }
             
@@ -1403,7 +1405,6 @@ path, rect, g, circle, ellipse {
                 font-family: 'luckiest guy';
                 font-size: 45px;
                 line-height: 65px;
-                background-color: #c00;
                 text-align: center;
                 user-select: none;
             }
@@ -1433,7 +1434,97 @@ path, rect, g, circle, ellipse {
     
     <hr>
     
-    <br><div class="qr signature">~queviva</div>
+    <div samPrescrip class="qr">
+        
+        ok, so how is this achieved? let's look at an incredibly
+        simple animation that changes the <i>path</i>
+        of an <i>svg element</i>:
+        <br><br>
+        
+        <pre>
+&lt;!-- include the script --&gt;
+&lt;script src="roofiemation.js"&gt;&lt;/script&gt;
+
+&lt;!-- create a shape with roofie param --&gt;
+&lt;svg&gt;&lt;path id="shape" data-roofie/&gt;&lt;/svg&gt;
+
+&lt;!-- in the styles ... --&gt;
+&lt;style&gt;
+
+    /* for that element ... */
+    #shape {
+    
+        /* create several css var paths */
+        --triangle : 'M0 0 ...';
+        --square   : 'M0 0 ...';
+        --hexagon  : 'M0 0 ...';
+        
+        /* assign an initial path */
+        d: path(var(--square));
+        
+    }
+    
+    /* create a class for each path */
+    /* all using the same animation */
+    .tri {
+        --path : var(--triangle);
+        animation-name: shapeAnimation;
+    }
+    
+    .sqr {
+        --path : var(--square);
+        animation-name: shapeAnimation;
+    }
+    
+    .hex {
+        --path : var(--hexagon);
+        animation-name: shapeAnimation;
+    }
+    
+    /* create the keyframe animation */
+    @keyframes shapeAnimation {
+    
+        /* always have nothing at zero */
+        0%{},
+        
+        /* change the path of the shape */
+        100%{
+            d: path(var(--path));
+        }
+        
+    }
+    
+&lt;/style&gt;
+
+&lt;script&gt;
+
+// listen for clicks
+window.addEventListener('click', () => {
+
+    // pick a random classname
+    let rand = ['tri','sqr','hex'][~~(Math.random()*3]);
+    
+    // call the roofie animation method
+    shape.roofie.mate(rand);
+
+});
+
+&lt;/script&gt;
+        </pre>
+    </div>
+    
+    <div faq class="qr">
+        often asked:<i> what three-dimensional
+        rendering engine is the
+        <b><a href="houzzz.html">house animation</a></b>
+        using?</i>
+        <br><br>
+        sadly, <i>none</i>; that house, and all of
+        its animations, are simply two-dimensional
+        svg drawings
+    </div>
+
+    <br><hr><div class="qr signature">~queviva</div>
 </div>
 </body>
 
@@ -1525,10 +1616,10 @@ function RoofieMate (customeClasseName) {
 window.addEventListener('load', e => {
 
     // DEBUGG
-    localStorage.clear();
+    //localStorage.clear();
     
     const
-    clam = (...v) => v.sort((a, b) => a - b)[1],
+    //clam = (...v) => v.sort((a, b) => a - b)[1],
     randBetween = (bot, top) => ~~(Math.random() * (top - bot) ) + bot,
     RFM = new RoofieMate(),//'.roofie'),
     handler = num => {
@@ -1549,7 +1640,7 @@ window.addEventListener('load', e => {
 
 
     let
-    cur = 0, curHue, curSat, curLit,
+    cur = 0,
     roofies = document.querySelectorAll('.roofie'),
     lips = document.querySelectorAll('.kloud'),
     
@@ -1557,10 +1648,6 @@ window.addEventListener('load', e => {
         JSON.parse(localStorage[defPrefs.appName])
         :
         defPrefs;
-        
-    curHue = prefs.hue;
-    curSat = prefs.sat;
-    curLit = prefs.lit;
     
     roofies.forEach(r => r.vals = (r.dataset.vals || '').trim().split(/\s+/));
     
@@ -1616,53 +1703,9 @@ window.addEventListener('load', e => {
         }
         
     });
-    
-    // colored entrance
-    const coloredEntrance = (e, dx, dy, CTRL) => {
-        
-        e.stopPropagation();
-        e.preventDefault();
-        
-        curHue = (((curHue + (dy / 50)) % 360) + 360) % 360;
-        
-        (CTRL) ?
-            curSat = clam(curSat - dx/100, 100, 0)
-        :
-            curLit = clam(curLit - dx/100, 100, 0)
-        ;
-        document.documentElement.style.setProperty('--color', curHue + ', ' + curSat +'%');
-        document.documentElement.style.setProperty('--lightness', curLit + '%');
-        
-    };
-    coloredEntrance(
-        {
-            stopPropagation: () => true,
-            preventDefault: () => true
-        },
-        0,0,false
-    );
 
-    roofGroupTop.addEventListener('wheel', e => {
-        coloredEntrance(e, e.wheelDeltaX, e.wheelDeltaY, e.ctrlKey);
-        e.preventDefault();
-    });
-    
-    let origTouch = [0, 0];
-    
-    roofGroupTop.addEventListener('touchstart', e =>
-        origTouch = [e.touches[0].pageX, e.touches[0].pageY]
-    );
-    
-    roofGroupTop.addEventListener('touchmove', e =>
-        coloredEntrance(e, origTouch[0] - e.touches[0].pageX, origTouch[1] - e.touches[0].pageY, e.touches[1])
-    );
-    
     slide0.addEventListener('input', e =>
         handler(slide0.value)
-    );
-    
-    roofGroupTop.addEventListener('dblclick', e =>
-        roofies.forEach(r =>  RFM[r.id].paz())
     );
     
     // run on load
@@ -1670,10 +1713,7 @@ window.addEventListener('load', e => {
     
     // save state when the page closes
     window.addEventListener('beforeunload', e => {
-        prefs.hue = curHue;
-        prefs.sat = curSat;
-        prefs.lit = curLit;
-        storePrefs();
+        //storePrefs();
     });
     
     
@@ -1682,5 +1722,7 @@ window.addEventListener('load', e => {
 
 
 </script>
+
+<script src="nosepicker.pico.js"></script>
 
 </html>
