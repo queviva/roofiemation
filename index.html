@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<head><title>houzzz</title>
+<head><title>roofiemation</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style id="demoStyles">
 
@@ -17,14 +17,14 @@
     --faded-txt: rgba(255, 255, 255, 0.5);
     --trans-speed: 0.3s;
     
-    --nose-H: 10;
-    --nose-S: 60%;
+    --nose-H: 20;
+    --nose-S: 100%;
     --nose-L: 80%;
     
     --midness:  calc(0.37 * var(--nose-L));
     --darkness: calc(0.18 * var(--nose-L));
     --shade-opacity: 0.4;
-    --anispeed:         800ms;
+    --anispeed: 800ms;
 }
 
 * {
@@ -956,7 +956,7 @@ path, rect, g, circle, ellipse {
 <body>
 <div class="holder">
     
-    <div demo data-nose>
+    <div demo>
     <div id="svgHolder" class="qr">
 
     <svg id="svg0" viewbox="190 -100 200 320">
@@ -1169,10 +1169,7 @@ path, rect, g, circle, ellipse {
             ));
         ">click here</i> to reset the animation
         to normal speed;
-        
-        you can also scroll around
-        on the roof to change the color,
-        or hit <b onclick="
+        hit <b onclick="
             window.dispatchEvent(new KeyboardEvent(
                 'keydown',
                 {'keyCode' : 80}
@@ -1447,9 +1444,9 @@ path, rect, g, circle, ellipse {
 &lt;script src="roofiemation.js"&gt;&lt;/script&gt;
 
 &lt;!-- create a shape with roofie param --&gt;
-&lt;svg&gt;&lt;path id="shape" data-roofie/&gt;&lt;/svg&gt;
+&lt;svg&gt;&lt;path id="shape" data-roofie /&gt;&lt;/svg&gt;
 
-&lt;!-- in the styles ... --&gt;
+&lt;!-- then in the styles ... --&gt;
 &lt;style&gt;
 
     /* for that element ... */
