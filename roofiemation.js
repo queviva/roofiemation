@@ -4,14 +4,14 @@
 ////////////////////////////////////////////////////////////
 
 ((
-    dset = document.currentScript.dataset,
-    
     P = Object.assign(
         {
             selector: 'roofie',
             watchers: 'transform,opactity,d'
         },
-        JSON.parse(Object.values(dset)[0] || '{}')
+        JSON.parse(Object.values(
+            document.currentScript.dataset
+        )[0]||'{}')
     ),
     
     R = P.selector
